@@ -1,0 +1,47 @@
+/* Delete dialog */
+
+dialog {
+    background-color:#394a51;
+    color: white;
+    border: 1px solid gray;
+}
+
+#dialog-delete-artist {
+    padding: 20px;
+    text-align: center;
+}
+#dialog-delete-artist h2 {
+    padding: 20px;
+    text-align: center;
+}
+
+#dialog-delete-artist input:hover {
+    background-color:#6d6d6d;
+    cursor: pointer;
+}
+
+#delete-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#delete-grid input {
+    text-align: center;
+    height: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    color: white;
+    width: 90%;
+    border: 1px solid gray; 
+    margin: 0 auto 20px auto;
+}
+
+#close-delete-button {
+    background-color:#424242;
+    color: white;
+    position: absolute;
+    margin-bottom: 40px;
+    right: 20px;
+    border: 1px solid gray;
+    width: 20px;
+}

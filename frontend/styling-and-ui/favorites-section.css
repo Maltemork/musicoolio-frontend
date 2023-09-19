@@ -1,0 +1,34 @@
+#favorites-content-grid {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    height: fit-content;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    gap: 12px;
+}
+
+.grid-item-artist.favorite-artist-card {
+    z-index: 999;
+    border-color:rgb(0, 255, 0);
+    box-shadow: 0px 0px 20px rgba(30, 255, 0, 0.685);
+}
+
+.list-item-artist.favorite-artist-card {
+    border: 2px solid rgb(0, 255, 0);
+    box-shadow: 0px 0px 6px rgba(30, 255, 0, 0.685);
+}
+
+@keyframes addToFavorites {
+    from {scale: 1;}
+    to {scale: 1.1;}
+}
+
+.favorite {
+    animation-name: addToFavorites;
+    animation-duration: 0.2s;
+    animation-direction: alternate-reverse;
+    color:rgb(0, 255, 0);
+}

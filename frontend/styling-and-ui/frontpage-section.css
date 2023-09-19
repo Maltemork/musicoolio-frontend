@@ -1,0 +1,132 @@
+/* Cards view */
+.cardsView {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    width: 95%;
+    height: fit-content;
+    gap: 12px;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.grid-item-artist {
+    position: relative;
+    flex: 0 0 18%;
+    height: fit-content;
+    padding: 10px;
+    background: linear-gradient(349deg, rgb(105, 151, 137) 0%, rgb(86, 160, 129) 100%);
+    text-align: center;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+    border-radius: 10px;
+    align-self: flex-start;
+    border: 1px solid rgb(136, 255, 219);
+}
+
+
+
+.artist-title {
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0px 0px 1px black;
+    font-size: 40px;
+    letter-spacing: -3px ;
+    color:rgb(0, 255, 255);
+}
+
+.grid-item-artist img {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    object-position: top;
+    margin-top: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.486);
+}
+
+.grid-item-artist:hover {
+    z-index: 99999;
+    scale: 1.01;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+    box-shadow: 0px 0px 80px rgb(0, 255, 234);
+}
+
+.grid-item-artist p {
+    margin: 0 0 0 0;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.grid-item-artist a {
+    position: relative;
+    margin-top: 200px;
+    color:rgb(0, 255, 255);
+    text-decoration: none;
+    text-align: center;
+}
+
+.artist-text-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#frontpage-section {
+    padding-bottom: 40px;
+}
+
+/* List view */
+
+.listView {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 20px auto;
+    height: fit-content;
+    align-items: flex-start;
+    align-content: flex-start;
+    text-align: left;
+    color: black;
+    
+}
+
+.listView * {
+    margin: auto auto;
+    
+}
+
+.list-item-artist {
+    background: linear-gradient(349deg, rgb(105, 151, 137) 0%, rgb(86, 160, 129) 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 1fr 1fr 3fr 2fr 2fr 1fr;
+    width: 90%;
+    padding: 10px;
+}
+
+.list-item-artist p {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    border-left: 1px solid rgb(0, 225, 255);
+    padding-left: 5px;
+}
+
+.list-item-artist img {
+    height: 80px;
+    width: 80px;
+    object-fit:cover;
+    object-position: top;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.486);
+}
+
+.list-item-artist a {
+    color:aqua;
+    text-align: right;
+    align-self: right;
+}
+
+.list-item-artist h3 {
+    color: aqua;
+    text-align: left;
+    margin-left: 0;
+}

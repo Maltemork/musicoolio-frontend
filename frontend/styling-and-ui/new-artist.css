@@ -1,0 +1,70 @@
+/* Create form: */
+
+#create-section {
+    min-height: 900px;
+    color: white;
+}
+
+#form-container {
+    padding-right: 2em;
+    padding: 2em;
+    width: 60%;
+    margin: 0px auto 200px auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    row-gap: 10px;
+}
+
+#form-container input, textarea {
+    width: 90%;
+}
+
+#form-container :first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    width: 100%;
+}
+
+#form-container hr {
+    color: white;
+    grid-column: 1 / -1;
+    width: 90%;
+    margin: 20px auto 20px auto;
+}
+
+
+#form-container label {
+    color: white;
+    padding-left: 40px;
+}
+
+#form-container :last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    height: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    color: white;
+    border: 1px solid gray;
+    width: 50%;
+    margin: 0 auto 20px auto;
+}
+
+#form-container button:hover {
+    background-color:#6d6d6d;
+    cursor: pointer;
+}
+
+#form-container ::placeholder {
+    text-align: center;
+}
+
+
+#form-artist-birth {
+    text-align: center;
+}
+
+#form-container h3 {
+    color: white;
+    font-size: 30px;
+}
