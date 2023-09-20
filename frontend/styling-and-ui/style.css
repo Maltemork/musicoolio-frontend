@@ -47,7 +47,7 @@ button:hover {
     background: #557272;
     font-size: 25px;
     position: relative;
-    
+    min-width: 2em;
 }
 
 
