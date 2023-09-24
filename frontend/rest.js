@@ -36,7 +36,7 @@ async function submitNewArtist(event) {
     const shortDescription = form.description.value;
     const image = form.image.value;
   
-    // create new artist object.
+    // create object out of new artist.
     const newArtist = {
       name,
       birthdate,
@@ -65,8 +65,58 @@ async function submitNewArtist(event) {
         let artistsArray = await getArtists();
         displayArtists(artistsArray);
         changeView("frontpage");
-    }
+    };
   }
+
+// Submit new song function
+async function submitNewSong(event) {
+  event.preventDefault();
+  console.log("Submitting song");
+
+  // Define values.
+  const form = event.target;
+  const title = form.title.value;
+  const artist = form.artist.value;
+  const album = form.album.value;
+  const year = form.year.value;
+  const label = form.label.value;
+  const genres = form.genre.value;
+  const length = form.length.value;
+  const image = form.image.value;
+
+  // Create object out of new song.
+  const newSong = {
+    title,
+    artist,
+    album,
+    year,
+    label,
+    genres,
+    length,
+    image
+  };
+  
+  // Make JSON.
+  const songAsJson = JSON.stringify(newSong);
+
+  // Send object to server (POST request)
+  const response = await fetch(`${endpoint}/tracks`, {
+    method: "POST",
+    body: songAsJson,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // If POST is OK, update the artistgrid and change view to frontpage.
+  if (response.ok) {
+      document.querySelector("#add-song-container").reset();
+      let songsArray = await getSongs();
+      displaySongs(songsArray);
+      changeView("music");
+  };
+  
+}
 
 // Get random artist
 
@@ -160,8 +210,8 @@ export {
     deleteArtist,
     editArtist,
     filterInArray,
-    getRandomArtist
-
+    getRandomArtist,
+    submitNewSong
 };
 
     

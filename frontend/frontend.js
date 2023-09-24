@@ -6,7 +6,8 @@ import {
     submitNewArtist,
     deleteArtist,
     editArtist,
-    getRandomArtist
+    getRandomArtist,
+    submitNewSong
 } from "./rest.js";
 import { filterInArray } from "./sort-filter-search.js";
 
@@ -64,6 +65,11 @@ function startEventListeners() {
     document.querySelector("#form-container").addEventListener("submit", (event) => {
         submitNewArtist(event);
     });
+
+    // Submit event for add song form.
+    document.querySelector("#add-song-container").addEventListener("submit", (event) => {
+        submitNewSong(event);
+    })
 
     // Change add view between artist/song (buttons)
     document.querySelector("#change-to-add-artist").addEventListener("click", () => changeAddForm("artist"));
