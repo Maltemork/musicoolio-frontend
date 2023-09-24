@@ -5,27 +5,27 @@
     color: white;
 }
 
-#form-container {
+.form-container {
     padding-right: 2em;
     padding: 2em;
     width: 60%;
-    margin: 0px auto 200px auto;
+    margin: 0px auto 20px auto;
     display: grid;
     grid-template-columns: 1fr 3fr;
     row-gap: 10px;
 }
 
-#form-container input, textarea {
+.form-container input, textarea {
     width: 90%;
 }
 
-#form-container :first-child {
+.form-container :first-child {
     grid-column: 1 / -1;
     text-align: center;
     width: 100%;
 }
 
-#form-container hr {
+.form-container hr {
     color: white;
     grid-column: 1 / -1;
     width: 90%;
@@ -33,12 +33,12 @@
 }
 
 
-#form-container label {
+.form-container label {
     color: white;
     padding-left: 40px;
 }
 
-#form-container :last-child {
+.form-container :last-child {
     grid-column: 1 / -1;
     text-align: center;
     height: 50px;
@@ -50,12 +50,12 @@
     margin: 0 auto 20px auto;
 }
 
-#form-container button:hover {
+.form-container button:hover {
     background-color:#6d6d6d;
     cursor: pointer;
 }
 
-#form-container ::placeholder {
+.form-container ::placeholder {
     text-align: center;
 }
 
@@ -64,7 +64,30 @@
     text-align: center;
 }
 
-#form-container h3 {
+.form-container h3 {
     color: white;
     font-size: 30px;
+}
+
+.TwoButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 20vw;
+    height: 3em;
+    margin: 20px auto 20px auto;
+    background-color: #424242;
+}
+
+.TwoButtons button {
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #424242;
+    border: 1px solid gray;
+    font-size: 20px;
+    position: relative;
+    min-width: 2em;
+}
+
+.TwoButtons button.active {
+    background: #507a65;
 }

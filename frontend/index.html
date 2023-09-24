@@ -36,7 +36,7 @@
                 </div>
                 <div id="nav-create" class="header-item clickable" >
                     <img src="./styling-and-ui/icons/plus-solid.svg" class="header-icon"/>
-                    <p>CREATE</p>
+                    <p>ADD</p>
                 </div>
                 
                 <div id="nav-favorites" class="header-item clickable">
@@ -86,6 +86,9 @@
                     <p>Frontpage</p>
                 </div>
             </div>
+            <div id="music-section" class="hidden">
+
+            </div>
             <div id="random-section" class="hidden">
                 <button id="new-random-artist-btn">Refresh</button>
                 <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random artist:</h3>
@@ -100,9 +103,14 @@
             </div>
             <div id="create-section" class="hidden">
                 <div class="content-grid-item">
-                    <div >
-                        <form action="submit" method="post" id="form-container">
-                            <h3>Create a new artist post</h3>
+                    <div>
+                        <div class="TwoButtons">
+                            <button type="button" class="active" id="change-to-add-artist">Add artist</button>
+                            <button type="button" id="change-to-add-song">Add song</button>
+                        </div>
+                        <div id="add-artist-div" >
+                        <form action="submit" method="post" id="form-container" class="form-container">
+                            <h3>Add new artist:</h3>
 
                             <hr>
 
@@ -125,15 +133,52 @@
                             <input type="text" name="label" id="form-artist-label" placeholder="Labels" required>
 
                             <label for="image">Image:</label>
-                            <input type="url" name="image" id="form-artist-image" placeholder="Insert image URL." required>
+                            <input type="url" name="image" id="form-artist-image" placeholder="Insert image URL" required>
 
                             <label for="website">Website:</label>
-                            <input type="url" name="website" id="form-artist-website" placeholder="Insert website URL." required>
+                            <input type="url" name="website" id="form-artist-website" placeholder="Insert website URL" required>
 
                             <hr>
 
-                            <button type="submit">Submit post</button>
+                            <button type="submit">Submit artist</button>
                         </form>
+                        </div>
+                        <div id="add-song-div" class="hidden">
+                        <form action="submit" method="post" id="add-track-container" class="form-container">
+                            <h3>Add new song:</h3>
+
+                            <hr>
+
+                            <label for="track-form-name">Song title:</label>
+                            <input type="text" name="track-form-name" id="track-form-title" placeholder="Type title" required>
+
+                            <label for="track-form-artists">Artist(s):</label>
+                            <input type="text" name="track-form-artists" id="track-form-artists" placeholder="Artist names">
+
+                            <label for="track-form-album">From album:</label>
+                            <input type="text" name="track-form-album" id="track-form-album" placeholder="Type album name" required>
+
+                            <label for="activeSince">Release year:</label>
+                            <input type="number" name="track-form-year" id="form-artist-career" placeholder="Type year" required>
+
+                            <label for="track-form-genres">Genre(s):</label>
+                            <input type="text" name="track-form-genres" id="form-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+
+                            <label for="track-form-label">Label:</label>
+                            <input type="text" name="label-form-label" id="track-form-label" placeholder="Type label" required>
+
+                            <label for="track-form-length">Track length:</label>
+                            <input type="time" name="track-form-length" id="track-form-length" step="1" style="text-align: center">
+
+                            <label for="track-form-image">Album art:</label>
+                            <input type="url" name="track-form-image" id="track-form-image" placeholder="Insert image URL" required>
+
+                            <hr>
+
+                            <button type="submit">Submit song</button>
+                        </form>
+                        </div>
+                        <hr/>
                     </div>
                 </div>
             </div>

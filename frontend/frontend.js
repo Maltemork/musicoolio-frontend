@@ -63,7 +63,23 @@ function startEventListeners() {
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", (event) => {
         submitNewArtist(event);
-    })
+    });
+
+    // Change add view between artist/song (buttons)
+    document.querySelector("#change-to-add-artist").addEventListener("click", () => changeAddForm("artist"));
+    document.querySelector("#change-to-add-song").addEventListener("click", () => changeAddForm("song"));
+
+    function changeAddForm(param) {
+        // change active button.
+        document.querySelector("#change-to-add-artist").classList.value = "";
+        document.querySelector("#change-to-add-song").classList.value = "";
+        document.querySelector(`#change-to-add-${param}`).classList.add("active");
+
+        // change active form.
+        document.querySelector("#add-artist-div").classList.value = "hidden";
+        document.querySelector("#add-song-div").classList.value = "hidden";
+        document.querySelector(`#add-${param}-div`).classList.value = "";
+    }
 
     // Eventlistener for NO button in delete dialog.
     document.querySelector("#btn-no").addEventListener("click", () => {
