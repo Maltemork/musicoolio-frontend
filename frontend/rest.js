@@ -6,7 +6,7 @@ import {
 } from "./frontend.js"
 import { filterInArray } from "./sort-filter-search.js";
 
-const endpoint = "http://localhost:8801";
+const endpoint = "https://musicoolioapp.azurewebsites.net";
 
 // Artists array (global);
 
