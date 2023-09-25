@@ -1,0 +1,21 @@
+#music-section {
+    width: 70vw;
+    align-items: center;
+    margin: 20px auto 0px auto;
+}
+#music-table {
+    border: 1px solid gray;
+    
+}
+
+#music-table p {
+    color: white;
+    padding-right: 30px;
+    text-align: left;
+}
+
+#music-table * {
+    display: grid;
+    padding: 3px;
+    grid-template-columns: 40px 3fr 2fr 3fr 1fr 2fr 30px;
+}
