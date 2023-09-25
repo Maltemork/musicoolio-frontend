@@ -43,18 +43,24 @@ async function startFunction() {
 }
 
 function startEventListeners() {
-    // Navigation buttons in the header.
+    // Navigation buttons in the header.'
+    // Artists (frontpage)
     document.querySelector("#nav-frontpage").addEventListener("click", async function() { 
         artistsArray = await getArtists();
         filterInArray(artistsArray); 
         changeView("frontpage");});
+    // music page
+    document.querySelector("#nav-music").addEventListener("click", () => changeView("music"));
 
+    // add page
     document.querySelector("#nav-create").addEventListener("click", () => { changeView("create"); });
 
+    // random page
     document.querySelector("#nav-random").addEventListener("click", async () => { 
         await randomArtistViewClicked();
         changeView("random"); });
-
+    
+    // favorites page
     document.querySelector("#nav-favorites").addEventListener("click", async() => { 
         artistsArray = await getArtists(); 
         fillFavoritesArray(artistsArray); 
@@ -100,6 +106,27 @@ function startEventListeners() {
     // LIST VIEW / GRID VIEW button
     document.querySelector("#change-grid-btn").addEventListener("click", changeGridViewClicked);
     
+}
+
+function changeView(section) {
+    console.log(`Changed view to ${section}.`);
+    // Hide all sections
+    document.querySelector("#random-section").classList.value = "hidden";
+    document.querySelector("#frontpage-section").classList.value = "hidden";
+    document.querySelector("#create-section").classList.value = "hidden";
+    document.querySelector("#favorites-section").classList.value = "hidden";
+    document.querySelector("#music-section").classList.value = "hidden";
+    
+    // Show selected section
+    document.querySelector(`#${section}-section`).classList.remove("hidden");
+
+    // Which header gets darker (active class).
+    document.querySelector(`#nav-random`).classList.remove("active");
+    document.querySelector(`#nav-music`).classList.remove("active");
+    document.querySelector(`#nav-frontpage`).classList.remove("active");
+    document.querySelector(`#nav-create`).classList.remove("active");
+    document.querySelector(`#nav-favorites`).classList.remove("active");
+    document.querySelector(`#nav-${section}`).classList.add("active");
 }
 
 function changeGridViewClicked() {
@@ -202,6 +229,10 @@ function displayArtists(list) {
     }
 }
 
+// MUSIC SECTION
+
+
+
 // Edit button clicked on a specific artist.
 function editArtistClicked(artist) {
     // show dialog.
@@ -261,13 +292,6 @@ function editArtistClicked(artist) {
  async function randomArtistViewClicked() {
     let artistObject = {};
     artistObject = await getRandomArtist();
-
-    //Makes sure you don't get the same artist twice.
-    while (artistObject.id == previousArtistObject) {
-        console.log(previousArtistObject);
-        artistObject = await getRandomArtist();
-        console.log("Skipped duplicate artist.")
-    }
 
     console.log(`Fetched random artist ${artistObject.name} from server`);
 
@@ -436,24 +460,7 @@ function addToFavoritesClicked(artist) {
   }
 
 
-function changeView(section) {
-    console.log(`Changed view to ${section}.`);
-    // Hide all sections
-    document.querySelector("#random-section").classList.value = "hidden";
-    document.querySelector("#frontpage-section").classList.value = "hidden";
-    document.querySelector("#create-section").classList.value = "hidden";
-    document.querySelector("#favorites-section").classList.value = "hidden";
-    
-    // Show selected section
-    document.querySelector(`#${section}-section`).classList.remove("hidden");
 
-    // Which header gets darker (active class).
-    document.querySelector(`#nav-random`).classList.remove("active");
-    document.querySelector(`#nav-frontpage`).classList.remove("active");
-    document.querySelector(`#nav-create`).classList.remove("active");
-    document.querySelector(`#nav-favorites`).classList.remove("active");
-    document.querySelector(`#nav-${section}`).classList.add("active");
-}
 
 export {
     displayArtists,

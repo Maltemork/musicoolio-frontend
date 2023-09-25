@@ -5,7 +5,6 @@ body {
     padding: 0;
     margin: 0;
     justify-content: center;
-    color: white;
     background: linear-gradient(to bottom, #2f4644 0%, #292929 100%);
     min-height: 100vh;
     background-size: cover;
@@ -52,7 +51,6 @@ button:hover {
 
 
 #main-container {
-    color: rgb(43, 43, 43);
     width: 90%;
     min-height: 850px;
     margin: 0 auto 0;

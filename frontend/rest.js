@@ -6,7 +6,7 @@ import {
 } from "./frontend.js"
 import { filterInArray } from "./sort-filter-search.js";
 
-const endpoint = "http://localhost:8801";
+const endpoint = "https://musicooliowebapp.azurewebsites.net/";
 
 // Artists array (global);
 
@@ -77,9 +77,9 @@ async function getRandomArtist() {
 }
 
 // Delete a specific artist.
-async function deleteArtist(id) {
+async function deleteArtist(artistId) {
     // Make a DELETE request to the endpoint.
-    const response = await fetch(`${endpoint}/artists/${id}`, {
+    const response = await fetch(`${endpoint}/artists/${artistId}`, {
       method: "DELETE",
     });
 
