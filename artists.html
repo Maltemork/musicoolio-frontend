@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styling-and-ui/style.css">
     <link rel="stylesheet" href="./styling-and-ui/header.css">
-    <link rel="stylesheet" href="./styling-and-ui/frontpage-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/artists-section.css">
     <link rel="stylesheet" href="./styling-and-ui/random-section.css">
     <link rel="stylesheet" href="./styling-and-ui/favorites-section.css">
     <link rel="stylesheet" href="./styling-and-ui/edit-artist.css">
@@ -17,33 +17,33 @@
 <body>
     <div id="main-container">
         
-            <div id="header" class="third-color">
-               <div id="logo-header" class="header-item">
-                    <img src="./styling-and-ui/logo.png" alt="logo" id="page-logo"/>
-               </div> 
-                
-                <div id="nav-frontpage" class="header-item clickable active">          
-                    <img src="./styling-and-ui/icons/users-solid.svg" class="header-icon"/>
-                    <p>ARTISTS</p>
-                </div>
-                <div id="nav-music" class="header-item clickable">          
-                    <img src="./styling-and-ui/icons/music-solid.svg" class="header-icon"/>
-                    <p>MUSIC</p>
-                </div>
-                <div id="nav-random" class="header-item clickable">          
-                    <img src="./styling-and-ui/icons/shuffle-solid.svg" class="header-icon"/>
-                    <p>RANDOM</p>
-                </div>
-                <div id="nav-create" class="header-item clickable" >
-                    <img src="./styling-and-ui/icons/plus-solid.svg" class="header-icon"/>
-                    <p>ADD</p>
-                </div>
-                
-                <div id="nav-favorites" class="header-item clickable">
-                    <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
-                    <p>FAVORITES</p>
-                </div>
-            </div>
+        <div id="header" class="third-color">
+            <div id="logo-header" class="header-item">
+                 <img src="./styling-and-ui/logo.png" alt="logo" id="page-logo"/>
+            </div> 
+             
+             <a href="./artists.html" class="header-item clickable active">          
+                 <img src="./styling-and-ui/icons/users-solid.svg" class="header-icon"/>
+                 <p style="color: white;">ARTISTS</p>
+             </a>
+             <a href="./music.html"  class="header-item clickable">          
+                 <img src="./styling-and-ui/icons/music-solid.svg" class="header-icon"/>
+                 <p>MUSIC</p>
+             </a>
+             <a href="./random.html" class="header-item clickable">          
+                 <img src="./styling-and-ui/icons/shuffle-solid.svg" class="header-icon"/>
+                 <p>RANDOM</p>
+             </a>
+             <a href="./add.html"  class="header-item clickable" >
+                 <img src="./styling-and-ui/icons/plus-solid.svg" class="header-icon"/>
+                 <p>ADD</p>
+             </a>
+             
+             <a href="./favorites.html"  class="header-item clickable">
+                 <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
+                 <p>FAVORITES</p>
+             </a>
+         </div>
         
         <div id="mainpage-content" class="fourth-color">
             
@@ -83,7 +83,7 @@
                         <button name="change-btn" id="change-grid-btn">CHANGE VIEW</button>
                 </div>
                 <div id="main-content-grid" class="cardsView">
-                    <p>Frontpage</p>
+                    <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin: 120px auto;"/>
                 </div>
             </div>
             <div id="music-section" class="hidden">

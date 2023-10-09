@@ -83,8 +83,13 @@
     margin-top: 20px;
 }
 
-#header {
+#header a {
     color: #b9eccf;
+    text-decoration: none;
+}
+
+#header {
+    
     /* make text not markable */
     -moz-user-select: none;
     -khtml-user-select: none;

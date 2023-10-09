@@ -30,8 +30,8 @@ async function startFunction() {
     let sortType = document.querySelector("#sortBy").value;
     let searchType = document.querySelector("#searchField").value;
 
-    displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType));
 
+    displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType));
 
     // Fills favorites array based on artist.favorite value.
     fillFavoritesArray(artistsArray);
@@ -39,41 +39,12 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-    
-
-
-
-    document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
-
-    document.querySelector("#sortBy").addEventListener("change", () => {filterInArray(artistsArray);});
-
-    document.querySelector("#searchField").addEventListener("input", () => {filterInArray(artistsArray)});
+    document.querySelector("#filterArtists").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
+    document.querySelector("#sortBy").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
+    document.querySelector("#searchField").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
 }
 
 function startEventListeners() {
-    // Navigation buttons in the header.'
-    // Artists (frontpage)
-    document.querySelector("#nav-frontpage").addEventListener("click", async function() { 
-        artistsArray = await getArtists();
-        filterInArray(artistsArray); 
-        changeView("frontpage");});
-    // music page
-    document.querySelector("#nav-music").addEventListener("click", () => changeView("music"));
-
-    // add page
-    document.querySelector("#nav-create").addEventListener("click", () => { changeView("create"); });
-
-    // random page
-    document.querySelector("#nav-random").addEventListener("click", async () => { 
-        await randomArtistViewClicked();
-        changeView("random"); });
-    
-    // favorites page
-    document.querySelector("#nav-favorites").addEventListener("click", async() => { 
-        artistsArray = await getArtists(); 
-        fillFavoritesArray(artistsArray); 
-        changeView("favorites"); });
-
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
         await submitNewArtist(event);
@@ -159,21 +130,11 @@ function displayArtists(list) {
         HTMLelement = /* HTML */ `
             <article class="grid-item-artist" id="artist-${artist.id}">
                 <img src="${artist.image}"/>
-                <p>
-                    <a href="${artist.website}">${artist.website}</a>
-                </p>
                 
                     <h2 class="artist-title">${artist.name}</h2>
-                    
-                    <h3>${artist.shortDescription}</h3>
-                    <div class="artist-text-container">
-                    <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
-                    <p>Active since: ${artist.activeSince}</p>
-                    <p>Genres: ${artist.genres} </p>
-                    <p>Label: ${artist.label}</p>
-                    </div>
-                    
-        
+                    <p>
+                    <a href="${artist.website}">${artist.website}</a>
+                </p>    
                     <div class="btns">
                     
                         <button class="btn-update">🖊</button>
