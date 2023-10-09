@@ -97,8 +97,8 @@
                 <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random album:</h3>
                 <div id="random-album-container">
                 </div>
-                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>
-                <div id="random-track-container">
+                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random song:</h3>
+                <div id="random-song-container">
                 </div>
             </div>
             <div id="create-section" class="hidden">
@@ -144,34 +144,34 @@
                         </form>
                         </div>
                         <div id="add-song-div" class="hidden">
-                        <form action="submit" method="post" id="add-track-container" class="form-container">
+                        <form action="submit" method="post" id="add-song-container" class="form-container">
                             <h3>Add new song:</h3>
 
                             <hr>
 
-                            <label for="track-form-name">Song title:</label>
-                            <input type="text" name="track-form-name" id="track-form-title" placeholder="Type title" required>
+                            <label for="title">Song title:</label>
+                            <input type="text" name="title" id="song-form-title" placeholder="Type title" required>
 
-                            <label for="track-form-artists">Artist(s):</label>
-                            <input type="text" name="track-form-artists" id="track-form-artists" placeholder="Artist names">
+                            <label for="artist">Artist(s):</label>
+                            <input type="text" name="artist" id="song-form-artists" placeholder="Artist names">
 
-                            <label for="track-form-album">From album:</label>
-                            <input type="text" name="track-form-album" id="track-form-album" placeholder="Type album name" required>
+                            <label for="album">From album:</label>
+                            <input type="text" name="album" id="song-form-album" placeholder="Type album name" required>
 
-                            <label for="activeSince">Release year:</label>
-                            <input type="number" name="track-form-year" id="form-artist-career" placeholder="Type year" required>
+                            <label for="year">Release year:</label>
+                            <input type="number" name="year" id="song-form-year" placeholder="Type year" required>
 
-                            <label for="track-form-genres">Genre(s):</label>
-                            <input type="text" name="track-form-genres" id="form-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+                            <label for="genre">Genre:</label>
+                            <input type="text" name="genre" id="song-form-genre" placeholder="Pop, hiphop, alternative, etc." required>
 
-                            <label for="track-form-label">Label:</label>
-                            <input type="text" name="label-form-label" id="track-form-label" placeholder="Type label" required>
+                            <label for="label">Label:</label>
+                            <input type="text" name="label" id="song-form-label" placeholder="Type label" required>
 
-                            <label for="track-form-length">Track length:</label>
-                            <input type="time" name="track-form-length" id="track-form-length" step="1" style="text-align: center">
+                            <label for="length">Song length:</label>
+                            <input type="time" name="length" id="song-form-length" step="1" style="text-align: center">
 
-                            <label for="track-form-image">Album art:</label>
-                            <input type="url" name="track-form-image" id="track-form-image" placeholder="Insert image URL" required>
+                            <label for="image">Album art:</label>
+                            <input type="url" name="image" id="song-form-image" placeholder="Insert image URL" required>
 
                             <hr>
 
