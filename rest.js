@@ -1,11 +1,5 @@
 "use strict";
 
-import {
-  displayArtists,
-  changeView
-} from "./frontend.js"
-import { filterInArray } from "./sort-filter-search.js";
-
 const endpoint = "https://musicooliowebapp.azurewebsites.net/";
 
 // Artists array (global);
@@ -132,8 +126,7 @@ async function deleteArtist(artistId) {
 
     // If the response is okay, update the artists array and display it on the frontpage.
     if (response.ok) {
-        let artistsArray = await getArtists();
-        filterInArray(artistsArray);
+        return await getArtists();
     }
   }
 
@@ -206,7 +199,6 @@ export {
     submitNewArtist,
     deleteArtist,
     editArtist,
-    filterInArray,
     getRandomArtist,
     submitNewSong
 };

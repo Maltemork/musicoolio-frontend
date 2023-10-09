@@ -9,9 +9,8 @@ import {
     getRandomArtist,
     submitNewSong
 } from "./rest.js";
-import { filterInArray } from "./sort-filter-search.js";
+import { sortAnArray } from "./sort-filter-search.js";
 
-let previousArtistObject;
 let artistsArray = [];
 let favoritesArray = [];
 let listView = false;
@@ -27,14 +26,22 @@ async function startFunction() {
 
     artistsArray = await getArtists();
 
-    // Diplay artists
-    filterInArray(artistsArray);
+    let filterType = document.querySelector("#filterArtists").value;
+    let sortType = document.querySelector("#sortBy").value;
+    let searchType = document.querySelector("#searchField").value;
+
+    displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType));
+
 
     // Fills favorites array based on artist.favorite value.
     fillFavoritesArray(artistsArray);
 
     // starts event listeners
     startEventListeners();
+
+    
+
+
 
     document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
 
@@ -77,7 +84,7 @@ function startEventListeners() {
     });
 
     // Submit event for add song form.
-    document.querySelector("#add-song-container").addEventListener("submit", (event) => {
+    document.querySelector("#add-song-div").addEventListener("submit", (event) => {
         submitNewSong(event);
     })
 
@@ -121,22 +128,7 @@ function startEventListeners() {
 function changeView(section) {
     console.log(`Changed view to ${section}.`);
     // Hide all sections
-    document.querySelector("#random-section").classList.value = "hidden";
-    document.querySelector("#frontpage-section").classList.value = "hidden";
-    document.querySelector("#create-section").classList.value = "hidden";
-    document.querySelector("#favorites-section").classList.value = "hidden";
-    document.querySelector("#music-section").classList.value = "hidden";
-    
-    // Show selected section
-    document.querySelector(`#${section}-section`).classList.remove("hidden");
-
-    // Which header gets darker (active class).
-    document.querySelector(`#nav-random`).classList.remove("active");
-    document.querySelector(`#nav-music`).classList.remove("active");
-    document.querySelector(`#nav-frontpage`).classList.remove("active");
-    document.querySelector(`#nav-create`).classList.remove("active");
-    document.querySelector(`#nav-favorites`).classList.remove("active");
-    document.querySelector(`#nav-${section}`).classList.add("active");
+    window.location.href = `${section}.html`;
 }
 
 function changeGridViewClicked() {
@@ -305,8 +297,6 @@ function editArtistClicked(artist) {
 
     console.log(`Fetched random artist ${artistObject.name} from server`);
 
-    previousArtistObject = artistObject.id;
-
     let HTMLelement = /*HTML*/ `
     <img src="${artistObject.image}"/>
     <div>
@@ -468,12 +458,3 @@ function addToFavoritesClicked(artist) {
     // Update artist in server.
     
   }
-
-
-
-
-export {
-    displayArtists,
-    artistsArray,
-    changeView
-}
