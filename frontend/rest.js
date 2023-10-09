@@ -74,9 +74,9 @@ async function getRandomArtist() {
 }
 
 // Delete a specific artist.
-async function deleteArtist(id) {
+async function deleteArtist(artistId) {
     // Make a DELETE request to the endpoint.
-    const response = await fetch(`${endpoint}/artists/${id}`, {
+    const response = await fetch(`${endpoint}/artists/${artistId}`, {
       method: "DELETE",
     });
 
