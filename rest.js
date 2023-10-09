@@ -61,10 +61,7 @@ async function submitNewArtist(event) {
   
     // If POST is OK, update the artistgrid and change view to frontpage.
     if (response.ok) {
-        document.querySelector("#form-container").reset();
-        let artistsArray = await getArtists();
-        displayArtists(artistsArray);
-        changeView("frontpage");
+        console.log("Artist added.")
     };
   }
 

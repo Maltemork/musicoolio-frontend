@@ -68,8 +68,12 @@ function startEventListeners() {
         changeView("favorites"); });
 
     // Submit event for create new artist form.
-    document.querySelector("#form-container").addEventListener("submit", (event) => {
-        submitNewArtist(event);
+    document.querySelector("#form-container").addEventListener("submit", async (event) => {
+        await submitNewArtist(event);
+        document.querySelector("#form-container").reset();
+        artistsArray = await getArtists();
+        displayArtists(artistsArray);
+        changeView("frontpage");
     });
 
     // Submit event for add song form.
@@ -146,7 +150,7 @@ function changeGridViewClicked() {
     
 
 
-console.log(listView);
+    console.log(listView);
     displayArtists(artistsArray);
 }
 
@@ -171,7 +175,7 @@ function displayArtists(list) {
                     
                     <h3>${artist.shortDescription}</h3>
                     <div class="artist-text-container">
-                    <p>Born: ${artist.birthdate}</p>
+                    <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>Genres: ${artist.genres} </p>
                     <p>Label: ${artist.label}</p>
@@ -193,7 +197,7 @@ function displayArtists(list) {
                 <h3>${artist.name}</h3>
                     
                     <p>${artist.shortDescription}</p>
-                    <p>Born: ${artist.birthdate}</p>
+                    <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
                     <p>Label(s): ${artist.label}</p>
@@ -310,7 +314,7 @@ function editArtistClicked(artist) {
         <a href="${artistObject.website}">${artistObject.website}</a>
         <p>${artistObject.shortDescription}</p>
         <ul>
-            <li>Born on ${artistObject.birthdate}</li>
+            <li>Born on ${new Date(artistObject.birthdate).getFullYear()}</li>
             <li>Has been active in the music industry since ${artistObject.activeSince}.</li>
             <li>${artistObject.name} is primarily associated with ${artistObject.genres.toLowerCase()}.</li>
             <li>They have been signed to the record label(s) ${artistObject.label}.</li>
