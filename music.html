@@ -39,15 +39,155 @@
                  <p>ADD</p>
              </a>
              
-             <div id="nav-favorites" class="header-item clickable">
-                 <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
-                 <p>FAVORITES</p>
-             </div>
+             <a href="./favorites.html" class="header-item clickable">
+                <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
+                <p>FAVORITES</p>
+            </a>
          </div>
         
         <div id="mainpage-content" class="fourth-color">
-            <div id="music-section" class="hidden"></div>
+            
+            <div id="frontpage-section" class="hidden">
+                <div id="content-header">
+                    <label for="filterArtists">Genre: </label>
+                    <select name="filterArtists" id="filterArtists">
+                        <option value="">All</option>
+                        <option value="pop">Pop</option>
+                        <option value="r&b">R&B</option>
+                        <option value="funk">Funk</option>
+                        <option value="hiphop">Hip-hop</option>
+                        <option value="rock">Rock</option>
+                        <option value="country">Country</option>
+                        <option value="soul">Soul</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="dubstep">Dubstep</option>
+                        <option value="alt-pop">Alt-pop</option>
+                        <option value="psychedelic">Psychedelic</option>
+                        <option value="metal">Metal</option>
+                        <option value="house">House</option>
+                        <option value="alt-pop">Alt-pop</option>
+                    </select>
+                    
+                    <label for="sort">Sort by: </label>
+                        <select name="sort" id="sortBy">
+                            <option value="default" selected>Date added</option>
+                            <option value="default-reversed" selected>Date added (reversed)</option>
+                            <option value="name">Name</option>
+                            <option value="name-reverse">Name (reversed)</option>
+                            <option value="age">Age</option>
+                            <option value="age-reversed">Age (reversed)</option>
+                            <option value="activeSince">Active since</option>
+                            <option value="activeSince-reversed">Active since (reversed)</option>
+                        </select>
+                        <input type="search" id="searchField" placeholder="Search artist">
+                        <button name="change-btn" id="change-grid-btn">CHANGE VIEW</button>
+                </div>
+                <div id="main-content-grid" class="cardsView">
+                    <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin: 120px auto;"/>
+                </div>
+            </div>
+            <div id="music-section">
 
+            </div>
+            <div id="random-section" class="hidden">
+                <button id="new-random-artist-btn">Refresh</button>
+                <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random artist:</h3>
+                <div id="random-section-container">
+                </div>
+                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random album:</h3>
+                <div id="random-album-container">
+                </div>
+                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>
+                <div id="random-track-container">
+                </div>
+            </div>
+            <div id="create-section" class="hidden">
+                <div class="content-grid-item">
+                    <div>
+                        <div class="TwoButtons">
+                            <button type="button" class="active" id="change-to-add-artist">Add artist</button>
+                            <button type="button" id="change-to-add-song">Add song</button>
+                        </div>
+                        <div id="add-artist-div" >
+                        <form action="submit" method="post" id="form-container" class="form-container">
+                            <h3>Add new artist:</h3>
+
+                            <hr>
+
+                            <label for="name">Artist name:</label>
+                            <input type="text" name="name" id="form-artist-name" placeholder="Name" required>
+
+                            <label for="description">Short description:</label>
+                            <textarea name="description" id="form-artist-description" placeholder="Description" maxlength: 200 required style="resize: none"></textarea>
+
+                            <label for="birth">Born:</label>
+                            <input type="date" name="birth" id="form-artist-birth" placeholder="Birthdate" required>
+
+                            <label for="activeSince">Active since:</label>
+                            <input type="number" name="activeSince" id="form-artist-career" placeholder="Career start (year)" required>
+
+                            <label for="genres">Genre(s):</label>
+                            <input type="text" name="genres" id="form-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+
+                            <label for="label">Labels:</label>
+                            <input type="text" name="label" id="form-artist-label" placeholder="Labels" required>
+
+                            <label for="image">Image:</label>
+                            <input type="url" name="image" id="form-artist-image" placeholder="Insert image URL" required>
+
+                            <label for="website">Website:</label>
+                            <input type="url" name="website" id="form-artist-website" placeholder="Insert website URL" required>
+
+                            <hr>
+
+                            <button type="submit">Submit artist</button>
+                        </form>
+                        </div>
+                        <div id="add-song-div" class="hidden">
+                        <form action="submit" method="post" id="add-track-container" class="form-container">
+                            <h3>Add new song:</h3>
+
+                            <hr>
+
+                            <label for="track-form-name">Song title:</label>
+                            <input type="text" name="track-form-name" id="track-form-title" placeholder="Type title" required>
+
+                            <label for="track-form-artists">Artist(s):</label>
+                            <input type="text" name="track-form-artists" id="track-form-artists" placeholder="Artist names">
+
+                            <label for="track-form-album">From album:</label>
+                            <input type="text" name="track-form-album" id="track-form-album" placeholder="Type album name" required>
+
+                            <label for="activeSince">Release year:</label>
+                            <input type="number" name="track-form-year" id="form-artist-career" placeholder="Type year" required>
+
+                            <label for="track-form-genres">Genre(s):</label>
+                            <input type="text" name="track-form-genres" id="form-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+
+                            <label for="track-form-label">Label:</label>
+                            <input type="text" name="label-form-label" id="track-form-label" placeholder="Type label" required>
+
+                            <label for="track-form-length">Track length:</label>
+                            <input type="time" name="track-form-length" id="track-form-length" step="1" style="text-align: center">
+
+                            <label for="track-form-image">Album art:</label>
+                            <input type="url" name="track-form-image" id="track-form-image" placeholder="Insert image URL" required>
+
+                            <hr>
+
+                            <button type="submit">Submit song</button>
+                        </form>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+            <div id="favorites-section" class="hidden">
+                
+                <div id="favorites-content-grid">
+                    <p>Favorites</p>
+                </div>
+            </div>
         </div>
     </div>
     

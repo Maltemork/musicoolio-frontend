@@ -48,7 +48,7 @@ function startEventListeners() {
     // Event listeners for sort, filter and search.
     document.querySelector("#filterArtists").addEventListener("change", sortChange);
     document.querySelector("#sortBy").addEventListener("change", sortChange);
-    document.querySelector("#searchField").addEventListener("change", sortChange);
+    document.querySelector("#searchField").addEventListener("input", sortChange);
 
     function sortChange() {
         let filterType = document.querySelector("#filterArtists").value;

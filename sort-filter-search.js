@@ -20,7 +20,7 @@ function searchInArray(array, searchInput) {
   if (searchInput === 0) {
     return array;
   } else {
-    return array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
+    return array.filter((obj) => obj.name.toLowerCase().includes(searchInput.toLowerCase()));
   }
 }
 
