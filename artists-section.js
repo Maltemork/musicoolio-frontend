@@ -39,12 +39,24 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-    document.querySelector("#filterArtists").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
-    document.querySelector("#sortBy").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
-    document.querySelector("#searchField").addEventListener("change", async () => displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType)));
+    
 }
 
+
+
 function startEventListeners() {
+    // Event listeners for sort, filter and search.
+    document.querySelector("#filterArtists").addEventListener("change", sortChange);
+    document.querySelector("#sortBy").addEventListener("change", sortChange);
+    document.querySelector("#searchField").addEventListener("change", sortChange);
+
+    function sortChange() {
+        let filterType = document.querySelector("#filterArtists").value;
+        let sortType = document.querySelector("#sortBy").value;
+        let searchType = document.querySelector("#searchField").value;
+        displayArtists(sortAnArray(artistsArray, filterType, searchType, sortType))
+    }
+
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
         await submitNewArtist(event);
@@ -129,18 +141,18 @@ function displayArtists(list) {
         if (listView == false) {
         HTMLelement = /* HTML */ `
             <article class="grid-item-artist" id="artist-${artist.id}">
-                <img src="${artist.image}"/>
-                
+                <img src="${artist.image}" id="image-${artist.id}"/>
+                <!-- <a class="artist-website" href="artist-${artist.website}">website</a>
+                -->
                     <h2 class="artist-title">${artist.name}</h2>
                     <p>
-                    <a href="${artist.website}">${artist.website}</a>
                 </p>    
                     <div class="btns">
-                    
                         <button class="btn-update">🖊</button>
                         <button class="btn-delete">🗑</button>
                         <button class="btn-favorite" id="fav-btn-${artist.id}">♥</button>
-                    </div> 
+                    </div>
+                   
             </article>
         `;
         } else {
@@ -148,8 +160,9 @@ function displayArtists(list) {
             <article class="list-item-artist" id="artist-${artist.id}">
                 <img src="${artist.image}"/>
                 <h3>${artist.name}</h3>
-                    
+                    <!--
                     <p>${artist.shortDescription}</p>
+                    -->
                     <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
@@ -406,13 +419,11 @@ function addToFavoritesClicked(artist) {
     if (artist.favorite == true) {
         console.log(`Removed ${artist.name} from favorites.`);
         artist.favorite = false;
-        document.querySelector(`#artist-${artist.id}`).classList.remove("favorite-artist-card");
         document.querySelector(`#fav-btn-${artist.id}`).classList.remove("favorite");
         updateArtist(artist);
     } else {
         console.log(`Liked ${artist.name} and added to favorites.`);
         document.querySelector(`#fav-btn-${artist.id}`).classList.add("favorite");
-        document.querySelector(`#artist-${artist.id}`).classList.add("favorite-artist-card");
         artist.favorite = true;
         updateArtist(artist);
     }

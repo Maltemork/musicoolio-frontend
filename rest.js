@@ -104,7 +104,7 @@ async function submitNewSong(event) {
       document.querySelector("#add-song-container").reset();
       let songsArray = await getSongs();
       displaySongs(songsArray);
-      changeView("music");
+      window.location.href = "./artists.html";
   };
   
 }

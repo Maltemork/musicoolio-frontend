@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styling-and-ui/style.css">
     <link rel="stylesheet" href="./styling-and-ui/header.css">
+    <link rel="stylesheet" href="./styling-and-ui/artists-section.css">
     <link rel="stylesheet" href="./styling-and-ui/random-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/favorites-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/edit-artist.css">
+    <link rel="stylesheet" href="./styling-and-ui/delete-artist.css">
+    <link rel="stylesheet" href="./styling-and-ui/new-artist.css">
     <link rel="icon" type="image/png" href="./styling-and-ui/favicon.png">
     <title>MusicoolioDB - Online database for music artists.</title>
 </head>
@@ -21,11 +26,11 @@
                  <img src="./styling-and-ui/icons/users-solid.svg" class="header-icon"/>
                  <p>ARTISTS</p>
              </a>
-             <a href="./music.html"  class="header-item clickable">          
+             <a href="./music.html"  class="header-item clickable active">          
                  <img src="./styling-and-ui/icons/music-solid.svg" class="header-icon"/>
                  <p>MUSIC</p>
              </a>
-             <a href="./random.html" class="header-item clickable active">          
+             <a href="./random.html" class="header-item clickable">          
                  <img src="./styling-and-ui/icons/shuffle-solid.svg" class="header-icon"/>
                  <p>RANDOM</p>
              </a>
@@ -34,24 +39,15 @@
                  <p>ADD</p>
              </a>
              
-             <a href="./favorites.html" class="header-item clickable">
-                <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
-                <p>FAVORITES</p>
-            </a>
+             <div id="nav-favorites" class="header-item clickable">
+                 <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
+                 <p>FAVORITES</p>
+             </div>
          </div>
         
         <div id="mainpage-content" class="fourth-color">
-            <div id="random-section">
-                <button id="new-random-artist-btn">Refresh</button>
-                
-                <div id="random-artist-container">
-                    <img src="./styling-and-ui/icons/loading-icon.svg" id="loading-icon" style="scale: 0.5;"/>
-                </div>
-                <div id="random-album-container">
-                </div>
-                <div id="random-track-container">
-                </div>
-            </div>
+            <div id="music-section" class="hidden"></div>
+
         </div>
     </div>
     
@@ -110,6 +106,8 @@
                 
             </form>
         </dialog>
-        <script src="./random-section.js" type="module"></script>
+ 
+  
+    <script src="artists-section.js" type="module"></script>
 </body>
 </html>

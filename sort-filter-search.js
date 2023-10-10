@@ -1,10 +1,10 @@
 // Logic is Filter -> Search ->  Sort
 //filter in array.
 
-async function sortAnArray(array, filter, search, sort) {
-  let filteredArray = await filterInArray(array, filter);
-  let searchedArray = await searchInArray(filteredArray, search);
-  let sortedArray = await sortArray(searchedArray, sort);
+function sortAnArray(array, filter, search, sort) {
+  let filteredArray = filterInArray(array, filter);
+  let searchedArray = searchInArray(filteredArray, search);
+  let sortedArray = sortArray(searchedArray, sort);
   return sortedArray;
 }
 
