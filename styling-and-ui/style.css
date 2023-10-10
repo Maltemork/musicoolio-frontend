@@ -58,9 +58,11 @@ button:hover {
     grid-template-columns: 1fr;
 }
 
-/* HEADER SECTION */
-
-
+.loading-icon {
+    margin: 20px auto;
+    max-height: 10em;
+    position: relative;
+}
 
 
 /* Hidden class */

@@ -79,8 +79,13 @@
 
 #page-logo {
     max-height: 100%;
-    max-width: 12em;
+    max-width: 100%;
     margin-top: 20px;
+}
+
+#header a {
+    color: #b9eccf;
+    text-decoration: none;
 }
 
 #header {
