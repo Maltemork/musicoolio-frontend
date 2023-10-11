@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styling-and-ui/style.css">
+    <link rel="icon" type="image/png" href="./styling-and-ui/favicon.png">
+    <title>MusicoolioDB - Add New Artist</title>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="create-section" class="fourth-color">
+            <div class="content-grid-item">
+                <div id="add-artist-div">
+                    <form action="/add-artist" method="post" id="form-container" class="form-container">
+                        <h3>Add new artist:</h3>
+                        <hr>
+                        <label for="name">Artist name:</label>
+                        <input type="text" name="name" id="form-artist-name" placeholder="Name" required>
+
+                        <label for="description">Short description:</label>
+                        <textarea name="description" id="form-artist-description" placeholder="Description"
+                            maxlength="200" required style="resize: none"></textarea>
+
+                        <label for="birth">Born:</label>
+                        <input type="date" name="birth" id="form-artist-birth" placeholder="Birthdate" required>
+
+                        <label for="activeSince">Active since:</label>
+                        <input type="number" name="activeSince" id="form-artist-career"
+                            placeholder="Career start (year)" required>
+
+                        <label for="genres">Genre(s):</label>
+                        <input type="text" name="genres" id="form-artist-genres"
+                            placeholder="Pop, hiphop, alternative, etc." required>
+
+                        <label for="label">Labels:</label>
+                        <input type="text" name="label" id="form-artist-label" placeholder="Labels" required>
+
+                        <label for="image">Image:</label>
+                        <input type="url" name="image" id="form-artist-image" placeholder="Insert image URL" required>
+
+                        <label for="website">Website:</label>
+                        <input type="url" name="website" id="form-artist-website" placeholder="Insert website URL"
+                            required>
+
+                        <hr>
+                        <button type="submit">Submit artist</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
