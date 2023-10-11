@@ -1,15 +1,14 @@
 #content-header {
     color: rgb(118, 255, 209);
-    
     display: flex;
-    flex: nowrap;
+    flex:auto;
     gap: 20px;
     align-self: center;
     align-items: center;
     align-content: center;
     justify-content: left;
     font-size: larger;
-    padding: 20px 200px 20px 200px;
+    margin: 20px 200px 20px 200px;
 }
 
 #searchField {
@@ -67,7 +66,6 @@
     border-radius: 0px;
     background: #557272;
     height: 3em;
-    width: 10em;
     margin: 0 auto;
     padding-left: 1px;
 }

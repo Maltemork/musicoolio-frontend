@@ -105,6 +105,11 @@ function startEventListeners() {
 
     // LIST VIEW / GRID VIEW button
     document.querySelector("#change-grid-btn").addEventListener("click", changeGridViewClicked);
+
+    // Close details button
+    document.querySelector("#close-details-button").addEventListener("click", 
+    () => document.querySelector("#extended-artist-details").close()
+    );
     
 }
 
@@ -142,17 +147,9 @@ function displayArtists(list) {
         HTMLelement = /* HTML */ `
             <article class="grid-item-artist" id="artist-${artist.id}">
                 <img src="${artist.image}" id="image-${artist.id}"/>
-                <!-- <a class="artist-website" href="artist-${artist.website}">website</a>
-                -->
                     <h2 class="artist-title">${artist.name}</h2>
                     <p>
-                </p>    
-                    <div class="btns">
-                        <button class="btn-update">🖊</button>
-                        <button class="btn-delete">🗑</button>
-                        <button class="btn-favorite" id="fav-btn-${artist.id}">♥</button>
-                    </div>
-                   
+                </p>     
             </article>
         `;
         } else {
@@ -167,14 +164,6 @@ function displayArtists(list) {
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
                     <p>Label(s): ${artist.label}</p>
-                    
-                    <a href="${artist.website}">Website</a>
-        
-                    <div class="btns">
-                        <button class="btn-update">🖊</button>
-                        <button class="btn-delete">🗑</button>
-                        <button class="btn-favorite" id="fav-btn-${artist.id}">♥</button>
-                    </div> 
             </article>
         `;
         };
@@ -186,22 +175,77 @@ function displayArtists(list) {
             document.querySelector(`#artist-${artist.id}`).classList.add("favorite-artist-card");
         }
 
-        // edit button
-        document
-            .querySelector("#main-content-grid article:last-child .btn-update")
-            .addEventListener("click", () => editArtistClicked(artist));
-
-        // delete button
-        document
-            .querySelector("#main-content-grid article:last-child .btn-delete")
-            .addEventListener("click", () => deleteArtistClicked(artist));
-        // add to favorites button
-        document
-            .querySelector("#main-content-grid article:last-child .btn-favorite")
-            .addEventListener("click", () => {addToFavoritesClicked(artist);
-                
-            });
         
+        
+        document.querySelector(`#artist-${artist.id}`).addEventListener("click", () => openArtistDetails(artist));
+
+        function openArtistDetails(artist) {
+            let months = [
+                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+            ];
+            let birthDay = new Date(artist.birthdate).getDate();
+            let birthString = getSuffixOf(birthDay);
+        
+            function getSuffixOf(i) {
+                var j = i % 10,
+                    k = i % 100;
+                if (j == 1 && k != 11) {
+                    return i + "st";
+                }
+                if (j == 2 && k != 12) {
+                    return i + "nd";
+                }
+                if (j == 3 && k != 13) {
+                    return i + "rd";
+                }
+                return i + "th";
+            }
+
+            let ArtistDetailsHTML = /* HTML */`
+                <img src="${artist.image}"/>
+                    <h3>${artist.name}</h3>
+                    <a href="${artist.website}">${artist.website}</a>
+                    <p>${artist.shortDescription}</p>
+                    <ul>
+                        <li>Born on ${months[new Date(artist.birthdate).getMonth()]} ${birthString}, ${new Date(artist.birthdate).getUTCFullYear()}.</li>
+                        <li>${artist.name} has been active in the music industry since ${artist.activeSince}.</li>
+                        <li>Their music is primarily associated with ${artist.genres.toLowerCase()}.</li>
+                        <li>They have been signed to the record label(s) ${artist.label}.</li>
+                        <br/>
+                    </ul>
+                    
+                    <div class="3btn-holder">
+                        <div class="btns">
+                        <button class="btn-update">🖊</button>
+                        <button class="btn-delete">🗑</button>
+                        <button class="btn-favorite" id="fav-btn-${artist.id}">♥</button>
+                        </div> 
+                    </div>
+                    <br/>
+
+            `;
+
+            
+
+            document.querySelector("#artist-details-container").innerHTML = ArtistDetailsHTML;
+            // edit button
+            document
+                .querySelector("#artist-details-container .btn-update")
+                .addEventListener("click", () => editArtistClicked(artist));
+
+            // delete button
+            document
+                .querySelector("#artist-details-container .btn-delete")
+                .addEventListener("click", () => deleteArtistClicked(artist));
+            // add to favorites button
+            document
+                .querySelector("#artist-details-container .btn-favorite")
+                .addEventListener("click", () => {addToFavoritesClicked(artist);
+             });
+
+
+            document.querySelector("#extended-artist-details").showModal();
+        }
     }
 }
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styling-and-ui/edit-artist.css">
     <link rel="stylesheet" href="./styling-and-ui/delete-artist.css">
     <link rel="stylesheet" href="./styling-and-ui/new-artist.css">
-    <link rel="icon" type="image/png" href="./styling-and-ui/favicon.png">
+    <link rel="icon" type="image/png" href="./styling-and-ui/icons/favicon.png">
     <title>MusicoolioDB - Online database for music artists.</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
         
         <div id="header" class="third-color">
             <div id="logo-header" class="header-item">
-                 <img src="./styling-and-ui/logo.png" alt="logo" id="page-logo"/>
+                 <img src="./styling-and-ui/icons/logo.png" alt="logo" id="page-logo"/>
             </div> 
              
              <a href="./artists.html" class="header-item clickable active ">          
@@ -246,7 +246,12 @@
                 
             </form>
         </dialog>
- 
+
+        <!-- ARTIST DETAILS DIALOG -->
+        <dialog id="extended-artist-details">
+            <input type="button" value="X" id="close-details-button" style="margin: 0 0 auto auto; display: block; cursor: pointer;">
+            <div id="artist-details-container"></div>
+        </dialog>
   
     <script src="artists-section.js" type="module"></script>
 </body>
