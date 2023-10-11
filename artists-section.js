@@ -9,8 +9,9 @@ import {
     getRandomArtist,
     submitNewSong
 } from "./rest.js";
-import { sortAnArray } from "./sort-filter-search.js";
+import { filterInArray } from "./sort-filter-search.js";
 
+let previousArtistObject;
 let artistsArray = [];
 let favoritesArray = [];
 let listView = false;
@@ -26,12 +27,8 @@ async function startFunction() {
 
     artistsArray = await getArtists();
 
-    let filterType = document.querySelector("#filterArtists").value;
-    let sortType = document.querySelector("#sortBy").value;
-    let searchType = document.querySelector("#searchField").value;
-
-
-    displayArtists(await sortAnArray(artistsArray, filterType, searchType, sortType));
+    // Diplay artists
+    filterInArray(artistsArray);
 
     // Fills favorites array based on artist.favorite value.
     fillFavoritesArray(artistsArray);
@@ -39,23 +36,36 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-    
+    document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
+
+    document.querySelector("#sortBy").addEventListener("change", () => {filterInArray(artistsArray);});
+
+    document.querySelector("#searchField").addEventListener("input", () => {filterInArray(artistsArray)});
 }
 
-
-
 function startEventListeners() {
-    // Event listeners for sort, filter and search.
-    document.querySelector("#filterArtists").addEventListener("change", sortChange);
-    document.querySelector("#sortBy").addEventListener("change", sortChange);
-    document.querySelector("#searchField").addEventListener("input", sortChange);
+    // Navigation buttons in the header.'
+    // Artists (frontpage)
+    document.querySelector("#nav-frontpage").addEventListener("click", async function() { 
+        artistsArray = await getArtists();
+        filterInArray(artistsArray); 
+        changeView("frontpage");});
+    // music page
+    document.querySelector("#nav-music").addEventListener("click", () => changeView("music"));
 
-    function sortChange() {
-        let filterType = document.querySelector("#filterArtists").value;
-        let sortType = document.querySelector("#sortBy").value;
-        let searchType = document.querySelector("#searchField").value;
-        displayArtists(sortAnArray(artistsArray, filterType, searchType, sortType))
-    }
+    // add page
+    document.querySelector("#nav-create").addEventListener("click", () => { changeView("create"); });
+
+    // random page
+    document.querySelector("#nav-random").addEventListener("click", async () => { 
+        await randomArtistViewClicked();
+        changeView("random"); });
+    
+    // favorites page
+    document.querySelector("#nav-favorites").addEventListener("click", async() => { 
+        artistsArray = await getArtists(); 
+        fillFavoritesArray(artistsArray); 
+        changeView("favorites"); });
 
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
@@ -67,7 +77,7 @@ function startEventListeners() {
     });
 
     // Submit event for add song form.
-    document.querySelector("#add-song-div").addEventListener("submit", (event) => {
+    document.querySelector("#add-song-container").addEventListener("submit", (event) => {
         submitNewSong(event);
     })
 
@@ -116,7 +126,22 @@ function startEventListeners() {
 function changeView(section) {
     console.log(`Changed view to ${section}.`);
     // Hide all sections
-    window.location.href = `${section}.html`;
+    document.querySelector("#random-section").classList.value = "hidden";
+    document.querySelector("#frontpage-section").classList.value = "hidden";
+    document.querySelector("#create-section").classList.value = "hidden";
+    document.querySelector("#favorites-section").classList.value = "hidden";
+    document.querySelector("#music-section").classList.value = "hidden";
+    
+    // Show selected section
+    document.querySelector(`#${section}-section`).classList.remove("hidden");
+
+    // Which header gets darker (active class).
+    document.querySelector(`#nav-random`).classList.remove("active");
+    document.querySelector(`#nav-music`).classList.remove("active");
+    document.querySelector(`#nav-frontpage`).classList.remove("active");
+    document.querySelector(`#nav-create`).classList.remove("active");
+    document.querySelector(`#nav-favorites`).classList.remove("active");
+    document.querySelector(`#nav-${section}`).classList.add("active");
 }
 
 function changeGridViewClicked() {
@@ -157,9 +182,8 @@ function displayArtists(list) {
             <article class="list-item-artist" id="artist-${artist.id}">
                 <img src="${artist.image}"/>
                 <h3>${artist.name}</h3>
-                    <!--
+                    
                     <p>${artist.shortDescription}</p>
-                    -->
                     <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
@@ -315,6 +339,8 @@ function editArtistClicked(artist) {
 
     console.log(`Fetched random artist ${artistObject.name} from server`);
 
+    previousArtistObject = artistObject.id;
+
     let HTMLelement = /*HTML*/ `
     <img src="${artistObject.image}"/>
     <div>
@@ -463,14 +489,25 @@ function addToFavoritesClicked(artist) {
     if (artist.favorite == true) {
         console.log(`Removed ${artist.name} from favorites.`);
         artist.favorite = false;
+        document.querySelector(`#artist-${artist.id}`).classList.remove("favorite-artist-card");
         document.querySelector(`#fav-btn-${artist.id}`).classList.remove("favorite");
         updateArtist(artist);
     } else {
         console.log(`Liked ${artist.name} and added to favorites.`);
         document.querySelector(`#fav-btn-${artist.id}`).classList.add("favorite");
+        document.querySelector(`#artist-${artist.id}`).classList.add("favorite-artist-card");
         artist.favorite = true;
         updateArtist(artist);
     }
     // Update artist in server.
     
   }
+
+
+
+
+export {
+    displayArtists,
+    artistsArray,
+    changeView
+}
