@@ -9,7 +9,7 @@ import {
     getRandomArtist,
     submitNewSong
 } from "./rest.js";
-import { filterInArray } from "./sort-filter-search.js";
+import { sortAnArray } from "./sort-filter-search.js";
 
 let previousArtistObject;
 let artistsArray = [];
@@ -28,7 +28,7 @@ async function startFunction() {
     artistsArray = await getArtists();
 
     // Diplay artists
-    filterInArray(artistsArray);
+    displayArtists(artistsArray);
 
     // Fills favorites array based on artist.favorite value.
     fillFavoritesArray(artistsArray);
@@ -36,36 +36,16 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-    document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
+    document.querySelector("#filterArtists").addEventListener("change", () => {sortAnArray(artistsArray)})
 
-    document.querySelector("#sortBy").addEventListener("change", () => {filterInArray(artistsArray);});
+    document.querySelector("#sortBy").addEventListener("change", () => {sortAnArray(artistsArray);});
 
-    document.querySelector("#searchField").addEventListener("input", () => {filterInArray(artistsArray)});
+    document.querySelector("#searchField").addEventListener("input", () => {sortAnArray(artistsArray)});
 }
 
 function startEventListeners() {
     // Navigation buttons in the header.'
     // Artists (frontpage)
-    document.querySelector("#nav-frontpage").addEventListener("click", async function() { 
-        artistsArray = await getArtists();
-        filterInArray(artistsArray); 
-        changeView("frontpage");});
-    // music page
-    document.querySelector("#nav-music").addEventListener("click", () => changeView("music"));
-
-    // add page
-    document.querySelector("#nav-create").addEventListener("click", () => { changeView("create"); });
-
-    // random page
-    document.querySelector("#nav-random").addEventListener("click", async () => { 
-        await randomArtistViewClicked();
-        changeView("random"); });
-    
-    // favorites page
-    document.querySelector("#nav-favorites").addEventListener("click", async() => { 
-        artistsArray = await getArtists(); 
-        fillFavoritesArray(artistsArray); 
-        changeView("favorites"); });
 
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
@@ -77,7 +57,7 @@ function startEventListeners() {
     });
 
     // Submit event for add song form.
-    document.querySelector("#add-song-container").addEventListener("submit", (event) => {
+    document.querySelector("#add-track-container").addEventListener("submit", (event) => {
         submitNewSong(event);
     })
 
@@ -323,7 +303,7 @@ function editArtistClicked(artist) {
 
         await editArtist(updatedArtist);
         artistsArray = await getArtists();
-        filterInArray(artistsArray);
+        sortAnArray(artistsArray);
         fillFavoritesArray(artistsArray);
     });
 
