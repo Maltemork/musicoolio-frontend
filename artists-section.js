@@ -1,7 +1,7 @@
 "use strict";
 
 import {
-    getArtists,
+    getData,
     updateArtist,
     submitNewArtist,
     deleteArtist,
@@ -22,10 +22,7 @@ window.addEventListener("load", startFunction);
 async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
-
-    
-
-    artistsArray = await getArtists();
+    artistsArray = await getData("artists");
 
     // Diplay artists
     displayArtists(artistsArray);
@@ -51,7 +48,7 @@ function startEventListeners() {
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
         await submitNewArtist(event);
         document.querySelector("#form-container").reset();
-        artistsArray = await getArtists();
+        artistsArray = await getData("artists");
         displayArtists(artistsArray);
         changeView("frontpage");
     });
@@ -302,7 +299,7 @@ function editArtistClicked(artist) {
         document.querySelector("#edit-artist-dialog").close();
 
         await editArtist(updatedArtist);
-        artistsArray = await getArtists();
+        artistsArray = await getData("artists");
         sortAnArray(artistsArray);
         fillFavoritesArray(artistsArray);
     });
