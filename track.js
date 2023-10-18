@@ -1,6 +1,7 @@
 export function construct(trackdata) {
     const TrackObject = {
         id: trackdata.id,
+        number: trackdata.trackNo,
         title: trackdata.title,
         album: trackdata.album,
         artistName: trackdata.artistName,

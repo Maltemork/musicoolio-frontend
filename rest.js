@@ -1,6 +1,6 @@
 "use strict";
 
-const endpoint = "https://musicooliowebapp.azurewebsites.net/";
+const endpoint = "https://musicooliowebapp.azurewebsites.net";
 
 // Artists array (global);
 

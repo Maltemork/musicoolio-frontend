@@ -9,10 +9,6 @@ import {
     getRandomArtist,
     submitNewSong
 } from "./rest.js";
-<<<<<<< Updated upstream
-import { sortAnArray } from "./sort-filter-search.js";
-=======
->>>>>>> Stashed changes
 
 import {
     sortAnArray
@@ -29,10 +25,7 @@ async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
     artistsArray = await getData("artists");
-<<<<<<< Updated upstream
-=======
     console.log(artistsArray);
->>>>>>> Stashed changes
 
     // Diplay artists
     displayArtists(artistsArray);
@@ -43,18 +36,6 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-<<<<<<< Updated upstream
-    document.querySelector("#filterArtists").addEventListener("change", () => {sortAnArray(artistsArray)})
-
-    document.querySelector("#sortBy").addEventListener("change", () => {sortAnArray(artistsArray);});
-
-    document.querySelector("#searchField").addEventListener("input", () => {sortAnArray(artistsArray)});
-}
-
-function startEventListeners() {
-    // Navigation buttons in the header.'
-    // Artists (frontpage)
-=======
     const filterParm = document.querySelector("#filterArtists").value;
     const sortParm = document.querySelector("#sortBy").value;
     const searchParm = document.querySelector("#searchField").value;
@@ -67,7 +48,6 @@ function startEventListeners() {
 }
 
 function startEventListeners() {
->>>>>>> Stashed changes
 
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {

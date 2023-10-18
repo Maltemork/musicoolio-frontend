@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./styling-and-ui/style.css">
     <link rel="stylesheet" href="./styling-and-ui/header.css">
     <link rel="stylesheet" href="./styling-and-ui/music-section.css">
-    <link rel="icon" type="image/png" href="./styling-and-ui/favicon.png">
+    <link rel="icon" type="image/png" href="./styling-and-ui/icons/favicon.png">
     <title>MusicoolioDB - Online database for music artists.</title>
 </head>
 <body>
@@ -43,15 +43,18 @@
         <div id="mainpage-content" class="fourth-color">
             <div id="music-section">
                       <table id="tracks-table">
-                        <thead>
+                        <thead id="tracks-table-head" class="unselectable">
+                            <th id="sort-tracks-number">#</th>
                             <th id="sort-tracks-title">Title</th>
                             <th id="sort-tracks-artist">Artist</th>
                             <th id="sort-tracks-album">Album</th>
-                            <th id="sort-member-releasedate">Release date</th>
-                            <th id="sort-member-duration">Duration</th>
+                            <th id="sort-tracks-releasedate">Release date</th>
+                            <th id="sort-tracks-duration">Duration</th>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                        </tbody>
                       </table>
+                      <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin-left: 40%;" id="tracks-loading-icon"/>
                 </div>   
             </div>
         </div>
