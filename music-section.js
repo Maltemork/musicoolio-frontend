@@ -1,17 +1,3 @@
-<<<<<<< Updated upstream
-import { getData } from "./rest.js";
-
-"use strict";
-
-window.addEventListener("load", start);
-
-let tracks = [];
-
-async function start() {
-    tracks = await getData("tracks");
-    console.log(tracks);
-}
-=======
 "use strict";
 
 import { getData } from "./rest.js";
@@ -55,4 +41,3 @@ export function getTrack(trackId) {
 //         </tr>
 //     `;
 // };
->>>>>>> Stashed changes

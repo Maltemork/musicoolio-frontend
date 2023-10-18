@@ -14,7 +14,7 @@ export function construct(trackdata) {
         writable: false
       });
 
-      Object.defineProperty(TrackObject, "name", {
+      Object.defineProperty(TrackObject, "title", {
         enumerable: false
       });
       
