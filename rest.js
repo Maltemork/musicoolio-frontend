@@ -125,7 +125,7 @@ async function deleteArtist(artistId) {
 
     // If the response is okay, update the artists array and display it on the frontpage.
     if (response.ok) {
-        return await getArtists();
+        return await getData("artists");
     }
   }
 
