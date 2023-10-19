@@ -78,7 +78,8 @@
 #page-logo {
     max-height: 100%;
     max-width: 100%;
-    margin-top: 20px;
+    margin: 10px auto;
+    padding: 0px 20px auto 0px;
 }
 
 #header a {

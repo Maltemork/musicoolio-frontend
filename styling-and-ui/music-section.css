@@ -1,21 +1,145 @@
+#main-container {
+    margin: 0px auto;
+}
+
+#mainpage-content {
+    margin: 0px auto;
+}
+
 #music-section {
     width: 70vw;
+    align-self: center;
     align-items: center;
     margin: 20px auto 0px auto;
+    justify-content: center;
 }
-#music-table {
-    border: 1px solid gray;
-    
-}
-
-#music-table p {
-    color: white;
-    padding-right: 30px;
+#tracks-table {
+    background-color: rgba(0, 255, 255, 0.055);
+    color: aqua;
+    margin: 20px auto;
+    width: fit-content;
     text-align: left;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-#music-table * {
+#tracks-table * {
+    padding-left: 10px;
+    padding-right: 20px;
+    margin-right: auto;
+}
+
+#tracks-table-head th {
+    color: white;
+}
+
+#tracks-table-head th:hover {
+    cursor: pointer;
+    background-color: gray;
+    padding-left: 10px;
+}
+
+#albums-table-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    gap: 30px;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
+
+.album-list-item {
+    position: relative;
+    flex: 0 0 ;
+    height: fit-content;
+    text-align: left;
+    background: rgb(48, 48, 48);
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.album-list-item img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: top;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.486);
+}
+
+.album-list-item:hover {
+    cursor: pointer;
+    z-index: 99999;
+    scale: 1.04;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+    color: aqua;
+    background-color: rgba(0, 255, 255, 0.08);
+}
+
+.album-list-item p {
+    max-height: 2em;
+    margin: 0 0 0 0;
+    font-size: 15px;
+    /* padding: 5px; */
+}
+
+.album-list-item a {
+    position: relative;
+    margin-top: 200px;
+    color:rgb(0, 255, 255);
+    text-decoration: none;
+    text-align: center;
+}
+
+.album-container-title {
+    font-size: 15px;
+    padding: 0;
+    margin: 0 0 0 0;
+}
+
+
+
+.TwoButtons {
     display: grid;
-    padding: 3px;
-    grid-template-columns: 40px 3fr 2fr 3fr 1fr 2fr 30px;
+    grid-template-columns: 1fr 1fr;
+    width: 20vw;
+    height: 3em;
+    margin: 20px auto 20px auto;
+    background-color: #424242;
+}
+
+.TwoButtons button {
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #424242;
+    border: 1px solid gray;
+    font-size: 20px;
+    position: relative;
+    min-width: 2em;
+}
+
+.TwoButtons button.active {
+    background: #507a65;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
 }

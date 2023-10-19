@@ -1,16 +1,15 @@
 "use strict";
 
-const endpoint = "https://musicooliowebapp.azurewebsites.net/";
+const endpoint = "https://musicooliowebapp.azurewebsites.net";
 
 // Artists array (global);
 
-async function getArtists() {
-    const response = await fetch(`${endpoint}/artists`);
+async function getData(type) {
+    const response = await fetch(`${endpoint}/${type}`);
     const data = await response.json();
-    const artists = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-    return artists;
+    const dataArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+    return dataArray;
 } 
-
 
 // Submit new artist function.
 async function submitNewArtist(event) {
@@ -126,7 +125,7 @@ async function deleteArtist(artistId) {
 
     // If the response is okay, update the artists array and display it on the frontpage.
     if (response.ok) {
-        return await getArtists();
+        return await getData("artists");
     }
   }
 
@@ -194,13 +193,13 @@ async function deleteArtist(artistId) {
  
 
 export {
-    getArtists,
+    getData,
     updateArtist,
     submitNewArtist,
     deleteArtist,
     editArtist,
     getRandomArtist,
-    submitNewSong
+    submitNewSong,
 };
 
     

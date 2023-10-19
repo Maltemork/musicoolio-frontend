@@ -3,7 +3,9 @@
 dialog {
     background-color:#394a51;
     color: white;
-    border: 1px solid gray;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 100px rgba(0, 255, 213, 0.596);
 }
 
 #dialog-delete-artist {

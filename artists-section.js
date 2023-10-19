@@ -1,7 +1,7 @@
 "use strict";
 
 import {
-    getArtists,
+    getData,
     updateArtist,
     submitNewArtist,
     deleteArtist,
@@ -9,9 +9,11 @@ import {
     getRandomArtist,
     submitNewSong
 } from "./rest.js";
-import { sortAnArray } from "./sort-filter-search.js";
 
-let previousArtistObject;
+import {
+    sortAnArray
+} from "./sort-filter-search.js";
+
 let artistsArray = [];
 let favoritesArray = [];
 let listView = false;
@@ -22,10 +24,8 @@ window.addEventListener("load", startFunction);
 async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
-
-    
-
-    artistsArray = await getArtists();
+    artistsArray = await getData("artists");
+    console.log(artistsArray);
 
     // Diplay artists
     displayArtists(artistsArray);
@@ -36,22 +36,24 @@ async function startFunction() {
     // starts event listeners
     startEventListeners();
 
-    document.querySelector("#filterArtists").addEventListener("change", () => {sortAnArray(artistsArray)})
+    const filterParm = document.querySelector("#filterArtists").value;
+    const sortParm = document.querySelector("#sortBy").value;
+    const searchParm = document.querySelector("#searchField").value;
 
-    document.querySelector("#sortBy").addEventListener("change", () => {sortAnArray(artistsArray);});
+    document.querySelector("#filterArtists").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 
-    document.querySelector("#searchField").addEventListener("input", () => {sortAnArray(artistsArray)});
+    document.querySelector("#sortBy").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
+
+    document.querySelector("#searchField").addEventListener("input", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 }
 
 function startEventListeners() {
-    // Navigation buttons in the header.'
-    // Artists (frontpage)
 
     // Submit event for create new artist form.
     document.querySelector("#form-container").addEventListener("submit", async (event) => {
         await submitNewArtist(event);
         document.querySelector("#form-container").reset();
-        artistsArray = await getArtists();
+        artistsArray = await getData("artists");
         displayArtists(artistsArray);
         changeView("frontpage");
     });
@@ -167,7 +169,7 @@ function displayArtists(list) {
                     <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
-                    <p>Label(s): ${artist.label}</p>
+                    <p>Label(s): ${artist.labels}</p>
             </article>
         `;
         };
@@ -302,7 +304,7 @@ function editArtistClicked(artist) {
         document.querySelector("#edit-artist-dialog").close();
 
         await editArtist(updatedArtist);
-        artistsArray = await getArtists();
+        artistsArray = await getData("artists");
         sortAnArray(artistsArray);
         fillFavoritesArray(artistsArray);
     });
