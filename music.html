@@ -40,20 +40,28 @@
             </a>
          </div>
         
-        <div id="mainpage-content" class="fourth-color">
+        <div id="mainpage-content">
             <div id="music-section">
-                      <table id="tracks-table">
-                        <thead id="tracks-table-head" class="unselectable">
-                            <th id="sort-tracks-number">#</th>
-                            <th id="sort-tracks-title">Title</th>
-                            <th id="sort-tracks-artist">Artist</th>
-                            <th id="sort-tracks-album">Album</th>
-                            <th id="sort-tracks-releasedate">Release date</th>
-                            <th id="sort-tracks-duration">Duration</th>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
+                        <div class="TwoButtons">
+                            <button type="button" class="active" id="change-to-songs-table">Songs</button>
+                            <button type="button" id="change-to-albums-table">Albums</button>
+                        </div>
+                        <div id="tracks-table" class="active-section">
+                            <table>
+                                <thead id="tracks-table-head" class="unselectable">
+                                    <th id="sort-tracks-title">Title</th>
+                                    <th id="sort-tracks-artist">Artist</th>
+                                    <th id="sort-tracks-album">Album</th>
+                                    <th id="sort-tracks-releasedate">Release date</th>
+                                    <th id="sort-tracks-duration">Duration</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="albums-table" class="hidden">
+                            
+                        </div>
                       <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin-left: 40%;" id="tracks-loading-icon"/>
                 </div>   
             </div>

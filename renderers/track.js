@@ -1,4 +1,4 @@
-export function construct(trackdata) {
+export function constructTrackObject(trackdata) {
     const TrackObject = {
         id: trackdata.id,
         number: trackdata.trackNo,
@@ -6,7 +6,6 @@ export function construct(trackdata) {
         album: trackdata.album,
         artistName: trackdata.artistName,
         releaseDate: trackdata.releaseDate,
-        image: trackdata.trackImage,
         duration: trackdata.duration
     }
 
@@ -16,10 +15,6 @@ export function construct(trackdata) {
       });
 
       Object.defineProperty(TrackObject, "title", {
-        enumerable: false
-      });
-      
-      Object.defineProperty(TrackObject, "image", {
         enumerable: false
       });
 

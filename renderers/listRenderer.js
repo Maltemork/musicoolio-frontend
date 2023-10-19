@@ -8,7 +8,7 @@ export function construct(list, container, itemRenderer) {
       render() {
         // Sæt HTML listen til at være tom.
         this.container.innerHTML = "";
-        // Check for filtre
+        // Tjek for filtre
         const filteredList = this.items.filter(item => this.filterValue === "all" || item[this.filterProperty] == this.filterValue);
         // Render hvert item i HTML'en.
         for (const item of filteredList) {
@@ -36,7 +36,20 @@ export function construct(list, container, itemRenderer) {
         const dir = this.sortDir === "asc" ? 1 : -1;
         
         // Sorter listen ud fra hvilken parameter der sorteres på.
-        this.items.sort((a, b) => a[this.sortBy] > b[this.sortBy] ? dir : -dir);
+          // Hvis duration, fjern ":", lav til number og se hvilken er større.
+        if (sortBy === "duration") {
+          this.items.sort((a, b) => Number(a[this.sortBy].replace(":", "")) > Number(b[this.sortBy].replace(":", ""))  ? dir : -dir);
+          // Hvis number, lav en basal sammenligning.
+        } else if (sortBy === "number") {
+          this.items.sort((a, b) => a[this.sortBy] > b[this.sortBy] ? dir : -dir);
+        }
+          // Hvis det ikke er number eller duration, men stadig er en string, lav om til små bogstaver og sammenlign.
+        else if (typeof this.sortBy[0] === "string") {
+          this.items.sort((a, b) => a[this.sortBy].toLowerCase() > b[this.sortBy].toLowerCase()  ? dir : -dir);
+          // Ellers bare lav en normal sammenligning
+          } else {
+            this.items.sort((a, b) => a[this.sortBy] > b[this.sortBy]  ? dir : -dir);
+          }
         
         // Render listen.
         this.render();
