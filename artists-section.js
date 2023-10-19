@@ -40,11 +40,11 @@ async function startFunction() {
     const sortParm = document.querySelector("#sortBy").value;
     const searchParm = document.querySelector("#searchField").value;
 
-    document.querySelector("#filterArtists").addEventListener("change", () => {displayArtists(sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
+    document.querySelector("#filterArtists").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 
-    document.querySelector("#sortBy").addEventListener("change", () => {displayArtists(sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
+    document.querySelector("#sortBy").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 
-    document.querySelector("#searchField").addEventListener("input", () => {displayArtists(sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
+    document.querySelector("#searchField").addEventListener("input", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 }
 
 function startEventListeners() {
@@ -169,7 +169,7 @@ function displayArtists(list) {
                     <p>Born: ${new Date(artist.birthdate).getFullYear()}</p>
                     <p>Active since: ${artist.activeSince}</p>
                     <p>${artist.genres} </p>
-                    <p>Label(s): ${artist.label}</p>
+                    <p>Label(s): ${artist.labels}</p>
             </article>
         `;
         };
