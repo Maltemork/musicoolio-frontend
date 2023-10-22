@@ -67,24 +67,6 @@ function startEventListeners() {
     
 }
 
-function changeView(section) {
-    console.log(`Changed view to ${section}.`);
-    // Hide all sections
-    document.querySelector("#random-section").classList.value = "hidden";
-    document.querySelector("#frontpage-section").classList.value = "hidden";
-    document.querySelector("#create-section").classList.value = "hidden";
-    document.querySelector("#music-section").classList.value = "hidden";
-    
-    // Show selected section
-    document.querySelector(`#${section}-section`).classList.remove("hidden");
-
-    // Which header gets darker (active class).
-    document.querySelector(`#nav-random`).classList.remove("active");
-    document.querySelector(`#nav-music`).classList.remove("active");
-    document.querySelector(`#nav-frontpage`).classList.remove("active");
-    document.querySelector(`#nav-create`).classList.remove("active");
-    document.querySelector(`#nav-${section}`).classList.add("active");
-}
 
 function changeGridViewClicked() {
     if (listView == false) {
@@ -96,7 +78,7 @@ function changeGridViewClicked() {
         };
     
 
-
+        document.querySelector("#main-content-grid").innerHTML = "";    
     console.log(listView);
     displayArtists(artistsArray);
 }
@@ -267,57 +249,6 @@ function editArtistClicked(artist) {
 
  }
 
- // Random artist clicked
-
- async function randomArtistViewClicked() {
-    let artistObject = {};
-    artistObject = await getRandomArtist();
-
-    console.log(`Fetched random artist ${artistObject.name} from server`);
-
-    previousArtistObject = artistObject.id;
-
-    let HTMLelement = /*HTML*/ `
-    <img src="${artistObject.image}"/>
-    <div>
-        <h3>${artistObject.name}</h3>
-        <a href="${artistObject.website}">${artistObject.website}</a>
-        <p>${artistObject.shortDescription}</p>
-        <ul>
-            <li>Born on ${new Date(artistObject.birthdate).getFullYear()}</li>
-            <li>Has been active in the music industry since ${artistObject.activeSince}.</li>
-            <li>${artistObject.name} is primarily associated with ${artistObject.genres.toLowerCase()}.</li>
-            <li>They have been signed to the record label(s) ${artistObject.label}.</li>
-            <br/>
-        </ul>
-        
-        <div class="3btn-holder">
-        <button class="btn-favorite">♥</button>
-    </div>
-        <br/>
-    </div>
-    
-    `;
-    document.querySelector("#random-section-container").innerHTML = HTMLelement;
-    toggleGreenGlow();
-    document
-            .querySelector("#random-section-container button")
-            .addEventListener("click", async () => {
-                
-                addToFavoritesClicked(artistObject);
-                toggleGreenGlow();
-            });
-
-     function toggleGreenGlow() {
-         if (artistObject.favorite === true) {
-             document.querySelector("#random-section-container .btn-favorite").classList.add("favorite");
-             document.querySelector("#random-section-container").classList.add("favorite-artist-card");
-         } else {
-             document.querySelector("#random-section-container .btn-favorite").classList.remove("favorite");
-             document.querySelector("#random-section-container").classList.remove("favorite-artist-card");
-         }
-     }
- }
 
 // Delete button clicked on a specific artist.
 function deleteArtistClicked(artist) {
@@ -344,6 +275,6 @@ function deleteArtistClicked(artist) {
 
 export {
     displayArtists,
-    artistsArray,
-    changeView
+    artistsArray
+ 
 }

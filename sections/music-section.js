@@ -150,6 +150,7 @@ async function searchTracks() {
             }
             return newArray;
         }
+        newArray = newArray.map(track.constructTrackObject);
         console.log(newArray);
         const filteredTrackList = ListRenderer.construct(newArray, "#tracks-table tbody", TrackRenderer);
         document.querySelector("#tracks-loading-icon").classList.add("hidden");
@@ -159,7 +160,6 @@ async function searchTracks() {
         document.querySelector("#sort-tracks-title").addEventListener("click", () => filteredTrackList.sort("title"));
         document.querySelector("#sort-tracks-artist").addEventListener("click", () => filteredTrackList.sort("artistName"));
         document.querySelector("#sort-tracks-album").addEventListener("click", () => filteredTrackList.sort("album"));
-        document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => filteredTrackList.sort("releaseDate"));
         document.querySelector("#sort-tracks-duration").addEventListener("click", () => filteredTrackList.sort("duration"));
     }
     

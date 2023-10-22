@@ -4,6 +4,7 @@ export const AlbumTrackRenderer = {
         <tr>
         <td>${track.trackNo}</td>
           <td>${track.trackTitle}</td>
+          <td>${track.trackArtistName}</td>
           <td>${track.duration}</td>
         </tr>`;
       return html;

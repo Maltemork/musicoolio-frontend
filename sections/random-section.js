@@ -2,17 +2,25 @@
 
 import {
     getRandomArtist,
+    getRandomAlbum,
+    getRandomTrack
 } from "../crud/rest.js";
 
 window.addEventListener("load", startFunction);
 
+
 function startFunction() {
     randomArtistView();
-
+    randomAlbumView();
+    randomTrackView();
     // event listener
     document.querySelector("#new-random-artist-btn").addEventListener("click", async () => {
         document.querySelector("#random-artist-container").innerHTML = `<img id="loading-icon" src="./styling-and-ui/icons/loading-icon.svg" class="loading-icon"/>`;
+        document.querySelector("#random-album-container").innerHTML = ``;
+        document.querySelector("#random-track-container").innerHTML = ``;
         randomArtistView();
+        randomAlbumView();
+        randomTrackView();
     });  
 }
 
@@ -69,5 +77,61 @@ async function randomArtistView() {
     </div>
     `;
     document.querySelector("#random-artist-container").innerHTML = HTMLelement;
+}
+
+async function randomAlbumView() {
+    let albumObject = {};
+    albumObject = await getRandomAlbum();
+
+    console.log(`Fetched random album ${albumObject.title} from server`);
+    console.log(albumObject);
+
+    let HTMLelement = /*HTML*/ `
+    <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random album:</h3>
+    <div id="random-artist-card">
+        <img src="${albumObject.albumArt}"/>
+        <div>
+            <h3>${albumObject.title}</h3>
+            <p>Album by ${albumObject.artistName}</p>
+            <ul>
+                <li>Released on ${albumObject.releaseDate}.</li>
+                <br/>
+            </ul>
+            
+            <div class="3btn-holder">
+
+        </div>
+            <br/>
+        </div>
+    </div>
+    `;
+    document.querySelector("#random-album-container").innerHTML = HTMLelement;
+}
+
+async function randomTrackView() {
+    let trackObject = {};
+    trackObject = await getRandomTrack();
+
+    console.log(`Fetched random album ${trackObject.title} from server`);
+    console.log(trackObject);
+
+    let HTMLelement = /*HTML*/ `
+    <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>
+    <div id="random-artist-card">
+        <div>
+            <h3>${trackObject.title}</h3>
+            <p>Track by ${trackObject.artistName}</p>
+            <ul>
+                <br/>
+            </ul>
+            
+            <div class="3btn-holder">
+
+        </div>
+            <br/>
+        </div>
+    </div>
+    `;
+    document.querySelector("#random-track-container").innerHTML = HTMLelement;
 }
 

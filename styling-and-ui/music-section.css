@@ -159,7 +159,8 @@
 
 #album-details {
     flex-wrap: wrap;
-    width: 700px;
+    min-width: 40vw;
+    width: fit-content;
     max-height: 90vh;   
     text-align: center;
     box-shadow: 0px 0px 100px rgba(0, 255, 213, 0.596);
@@ -191,7 +192,7 @@
 }
 
 #album-tracks-container {
-    width: 90%;
+    min-width: 90%;
     margin: 0px auto;
     text-align: left;
     padding-left: 30px;

@@ -53,7 +53,8 @@ async function submitNewArtist(event) {
   
     // If POST is OK, update the artistgrid and change view to frontpage.
     if (response.ok) {
-        console.log("Artist added.")
+        document.querySelector("#add-artist-container").reset();
+        window.location.href = "./music.html";
     };
   }
 
@@ -91,7 +92,6 @@ async function submitNewAlbum(event) {
     // If POST is OK, update the artistgrid and change view to frontpage.
       if (response.ok) {
         document.querySelector("#add-album-container").reset();
-        window.location.href = "./music.html";
     };
 
 }
@@ -159,6 +159,18 @@ async function submitNewSong(event) {
 
 async function getRandomArtist() {
   const response = await fetch(`${endpoint}/artists/random`);
+  const data = await response.json();
+  return data;
+}
+
+async function getRandomAlbum() {
+  const response = await fetch(`${endpoint}/albums/random`);
+  const data = await response.json();
+  return data;
+}
+
+async function getRandomTrack() {
+  const response = await fetch(`${endpoint}/tracks/random`);
   const data = await response.json();
   return data;
 }
@@ -252,6 +264,8 @@ export {
     deleteArtist,
     editArtist,
     getRandomArtist,
+    getRandomAlbum,
+    getRandomTrack,
     submitNewArtist,
     submitNewSong,
     submitNewAlbum,
