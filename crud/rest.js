@@ -9,14 +9,13 @@ async function getData(type) {
     const data = await response.json();
     const dataArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
     return dataArray;
-} 
+}
+
 
 // Submit new artist function.
 async function submitNewArtist(event) {
     event.preventDefault();
     console.log("Submit artist.");
-    // prevent default behaviour.
-    
 
     // Define all the values.
     const form = event.target;
@@ -58,6 +57,45 @@ async function submitNewArtist(event) {
     };
   }
 
+
+async function submitNewAlbum(event) {
+  event.preventDefault();
+
+    // Define values.
+    const form = event.target;
+    const artist = form.artist.value;
+    const title = form.title.value;
+    const releaseDate = form.releaseDate.value;
+    const albumArt = form.albumArt.value;
+
+    // Create object out of new album.
+    const newAlbum = {
+      artist,
+      title,
+      releaseDate,
+      albumArt
+    };
+
+    // Make
+    const albumAsJson = JSON.stringify(newAlbum);
+
+    // Send object to server (POST request)
+    const response = await fetch(`${endpoint}/albums`, {
+      method: "POST",
+      body: albumAsJson,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // If POST is OK, update the artistgrid and change view to frontpage.
+      if (response.ok) {
+        document.querySelector("#add-album-container").reset();
+        window.location.href = "./music.html";
+    };
+
+}
+
 // Submit new song function
 async function submitNewSong(event) {
   event.preventDefault();
@@ -66,24 +104,16 @@ async function submitNewSong(event) {
   // Define values.
   const form = event.target;
   const title = form.title.value;
-  const artist = form.artist.value;
   const album = form.album.value;
   const year = form.year.value;
-  const label = form.label.value;
-  const genres = form.genre.value;
   const length = form.length.value;
-  const image = form.image.value;
 
   // Create object out of new song.
   const newSong = {
     title,
-    artist,
     album,
     year,
-    label,
-    genres,
-    length,
-    image
+    length
   };
   
   // Make JSON.
@@ -101,9 +131,7 @@ async function submitNewSong(event) {
   // If POST is OK, update the artistgrid and change view to frontpage.
   if (response.ok) {
       document.querySelector("#add-song-container").reset();
-      let songsArray = await getSongs();
-      displaySongs(songsArray);
-      window.location.href = "./artists.html";
+      window.location.href = "./music.html";
   };
   
 }
@@ -202,11 +230,12 @@ async function deleteArtist(artistId) {
 export {
     getData,
     updateArtist,
-    submitNewArtist,
     deleteArtist,
     editArtist,
     getRandomArtist,
+    submitNewArtist,
     submitNewSong,
+    submitNewAlbum,
     search
 };
 

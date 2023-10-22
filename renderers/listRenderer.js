@@ -1,6 +1,6 @@
 "use strict";
 
-import { displayAlbum } from "../music-section.js";
+import { displayAlbum } from "../sections/music-section.js";
 
 export function construct(list, container, itemRenderer) {
     const ListRenderer = {

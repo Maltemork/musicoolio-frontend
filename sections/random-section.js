@@ -2,7 +2,7 @@
 
 import {
     getRandomArtist,
-} from "./rest.js";
+} from "../crud/rest.js";
 
 window.addEventListener("load", startFunction);
 
@@ -62,32 +62,12 @@ async function randomArtistView() {
             </ul>
             
             <div class="3btn-holder">
-            <button class="btn-favorite">♥</button>
+
         </div>
             <br/>
         </div>
     </div>
     `;
-
-    
-
     document.querySelector("#random-artist-container").innerHTML = HTMLelement;
-    toggleGreenGlow();
-    document
-            .querySelector("#random-artist-card button")
-            .addEventListener("click", async () => {
-                
-                addToFavoritesClicked(artistObject);
-                toggleGreenGlow();
-            });
-    function toggleGreenGlow() {
-        if (artistObject.favorite === true) {
-            document.querySelector("#random-artist-card .btn-favorite").classList.add("favorite");
-            document.querySelector("#random-artist-card").classList.add("favorite-artist-card");
-        } else {
-            document.querySelector("#random-artist-card .btn-favorite").classList.remove("favorite");
-            document.querySelector("#random-artist-card").classList.remove("favorite-artist-card");
-        }
-    }
 }
 

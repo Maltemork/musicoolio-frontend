@@ -1,12 +1,12 @@
 "use strict";
 
-import { getData, search } from "./rest.js";
-import * as album from "./renderers/album.js"
-import * as track from "./renderers/track.js";
-import * as ListRenderer from "./renderers/listRenderer.js";
-import { AlbumDetailsRenderer } from "./renderers/albumDetailsRenderer.js";
-import { AlbumRenderer } from "./renderers/albumRenderer.js";
-import { TrackRenderer } from "./renderers/trackRenderer.js";
+import { getData, search } from "../crud/rest.js";
+import * as album from "../renderers/album.js"
+import * as track from "../renderers/track.js";
+import * as ListRenderer from "../renderers/listRenderer.js";
+import { AlbumDetailsRenderer } from "../renderers/albumDetailsRenderer.js";
+import { AlbumRenderer } from "../renderers/albumRenderer.js";
+import { TrackRenderer } from "../renderers/trackRenderer.js";
 
 
 window.addEventListener("load", initMusicPage);
