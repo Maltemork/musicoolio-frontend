@@ -168,15 +168,21 @@
                                 <hr>
 
                                 <label for="track-form-album">From album:</label>
-                                <select name="track-form-album" id="track-form-album" required>
+                                <select name="album" id="track-form-album" required>
                                 </select>
+
+                                <label for="track-form-artists">Song artist(s):</label>
+                                <input type="text" name="artist" id="track-form-artists" placeholder="Type artist(s) for the song" required>
     
-                                <label for="track-form-name">Song title:</label>
-                                <input type="text" name="track-form-name" id="track-form-title" placeholder="Type title" required>
+                                <label for="title">Song title:</label>
+                                <input type="text" name="title" id="track-form-title" placeholder="Type title" required>
     
     
-                                <label for="track-form-length">Track length:</label>
-                                <input type="time" name="track-form-length" id="track-form-length" step="1" style="text-align: center">
+                                <label for="track-form-length">Song duration:</label>
+                                <input type="time" name="duration" id="track-form-length" style="text-align: center">
+
+                                <label for="track-form-length">Song number (#) on album:</label>
+                                <input type="number" name="number" id="track-form-number" style="text-align: center">
 
                                 <hr>
     

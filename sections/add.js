@@ -2,7 +2,8 @@
 
 import { getData,
   submitNewArtist, 
-  submitNewSong} from "../crud/rest.js";
+  submitNewSong,
+  submitNewAlbum} from "../crud/rest.js";
 
 window.addEventListener("load", start);
 
@@ -15,15 +16,18 @@ async function start() {
 
   // Submit event for create new artist form.
   document.querySelector("#add-artist-container").addEventListener("submit", async (event) => {
+    event.preventDefault();
     submitNewArtist(event);
   });
 
   // Submit event for add song form.
   document.querySelector("#add-track-container").addEventListener("submit", (event) => {
+    event.preventDefault();
     submitNewSong(event);
   })
 
   document.querySelector("#add-album-container").addEventListener("submit", (event) => {
+    event.preventDefault();
     submitNewAlbum(event);
   })
 

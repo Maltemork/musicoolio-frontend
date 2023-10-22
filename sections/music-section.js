@@ -17,16 +17,24 @@ let albumsArray = [];
 async function initMusicPage() {
     // Build the list
     await changeTable("songs")
+
     
 
     // Eventlistener til knapperne i toppen
     document.querySelector("#change-to-songs-table").addEventListener("click", () => changeTable("songs"));
     document.querySelector("#change-to-albums-table").addEventListener("click", () => changeTable("albums"));
+
+    
     
     // dialog eventlistener
     document.querySelector("#close-details-button").addEventListener("click", () => document.querySelector("#album-details").close());
 }
 
+
+ // Tilføj event listener hvis det er albums
+
+
+ 
 
 async function buildTracksList() {
     const data = await getData("tracks");
@@ -62,6 +70,10 @@ async function changeTable(table) {
         document.querySelector("#tracks-loading-icon").classList.add("hidden");
         albumsList.sort("title");
 
+        for (const album of albumsArray) {
+            document.querySelector(`#album-${album.id}`).addEventListener("click", () => {displayAlbum(album);});
+            }
+
     } else if (table === "songs") {
         document.querySelector("#tracks-table").classList.replace("hidden", "active-section");
         document.querySelector("#albums-table").classList.replace("active-section", "hidden");
@@ -80,8 +92,6 @@ async function changeTable(table) {
         document.querySelector("#sort-tracks-album").addEventListener("click", () => tracksList.sort("album"));
         document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => tracksList.sort("releaseDate"));
         document.querySelector("#sort-tracks-duration").addEventListener("click", () => tracksList.sort("duration"));
-
-        
     }
     
     
@@ -122,12 +132,11 @@ async function searchTracks() {
         console.log(searchValue);
         let _filteredTitles = await search("tracks", "title", `${searchValue}`);
         let _filteredArtists = await search("tracks", "artistName", `${searchValue}`);
-        let _filteredAlbums = await search("tracks", "album", `${searchValue}`)
-        let newArray = removeDuplicates(_filteredTitles, _filteredArtists, _filteredAlbums);
+        let newArray = removeDuplicates(_filteredTitles, _filteredArtists);
 
-        function removeDuplicates(arr1, arr2, arr3) {  
+        function removeDuplicates(arr1, arr2) {  
             // Samler de 2 arrays som bliver givet
-            let newArray = arr1.concat(arr2).concat(arr3);
+            let newArray = arr1.concat(arr2);
              // Starter et loop for arrayet.
             for (let i = 0; i < newArray.length; ++i) {
                 // Starter et loop inde i loopet, så hvert objekt tjekker alle andre objekter.
@@ -157,10 +166,8 @@ async function searchTracks() {
 }
 
 export function displayAlbum(album) {
-    console.log(album);
     document.querySelector("#album-details").showModal();
     const html = AlbumDetailsRenderer.render(album);
-    console.log(html);
     document.querySelector("#album-details-container").innerHTML = html;
     
 }

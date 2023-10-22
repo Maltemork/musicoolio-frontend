@@ -63,14 +63,14 @@ async function submitNewAlbum(event) {
 
     // Define values.
     const form = event.target;
-    const artist = form.artist.value;
+    const artistName = form.artists.value;
     const title = form.title.value;
     const releaseDate = form.releaseDate.value;
     const albumArt = form.albumArt.value;
 
     // Create object out of new album.
     const newAlbum = {
-      artist,
+      artistName,
       title,
       releaseDate,
       albumArt
@@ -104,16 +104,16 @@ async function submitNewSong(event) {
   // Define values.
   const form = event.target;
   const title = form.title.value;
-  const album = form.album.value;
-  const year = form.year.value;
-  const length = form.length.value;
+  const artistName = form.artist.value;
+  const duration = form.duration.value;
+  const trackNo = form.number.value;
 
   // Create object out of new song.
   const newSong = {
     title,
-    album,
-    year,
-    length
+    artistName,
+    duration,
+    trackNo
   };
   
   // Make JSON.
@@ -130,7 +130,7 @@ async function submitNewSong(event) {
 
   // If POST is OK, update the artistgrid and change view to frontpage.
   if (response.ok) {
-      document.querySelector("#add-song-container").reset();
+      document.querySelector("#add-track-container").reset();
       window.location.href = "./music.html";
   };
   

@@ -7,6 +7,14 @@ import {
     getRandomArtist
 } from "../crud/rest.js";
 
+import * as artist from "../renderers/artist.js";
+import * as ArtistGridRenderer from "../renderers/artistGridRenderer.js";
+import * as ArtistListRenderer from "../renderers/artistListRenderer.js";
+
+import * as ListRenderer from "../renderers/listRenderer.js";
+
+
+
 import {
     sortAnArray
 } from "../crud/sort-filter-search.js";
@@ -20,7 +28,7 @@ window.addEventListener("load", startFunction);
 async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
-    artistsArray = await getData("artists");
+    await buildArtistList();
     console.log(artistsArray);
 
     // Diplay artists
@@ -32,17 +40,9 @@ async function startFunction() {
     const filterParm = document.querySelector("#filterArtists").value;
     const sortParm = document.querySelector("#sortBy").value;
     const searchParm = document.querySelector("#searchField").value;
-
-    document.querySelector("#filterArtists").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
-
-    document.querySelector("#sortBy").addEventListener("change", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
-
-    document.querySelector("#searchField").addEventListener("input", async () => {displayArtists(await sortAnArray(artistsArray, filterParm, searchParm, sortParm));});
 }
 
 function startEventListeners() {
-
-    
 
     // Eventlistener for NO button in delete dialog.
     document.querySelector("#btn-no").addEventListener("click", () => {
@@ -56,9 +56,6 @@ function startEventListeners() {
     document.querySelector("#close-edit-button").addEventListener("click", () => {
         document.querySelector("#edit-artist-dialog").close();});
 
-    
-    // load new random artist
-    document.querySelector("#new-random-artist-btn").addEventListener("click", randomArtistViewClicked);
 
     // LIST VIEW / GRID VIEW button
     document.querySelector("#change-grid-btn").addEventListener("click", changeGridViewClicked);
@@ -104,10 +101,14 @@ function changeGridViewClicked() {
     displayArtists(artistsArray);
 }
 
+async function buildArtistList() {
+    const data = await getData("artists");
+    artistsArray = data.map(artist.constructArtistObject);
+}
+
 // Display artists.
-function displayArtists(list) {
-    // Clear grid
-    document.querySelector("#main-content-grid").innerHTML = "";
+function displayArtists() {
+    let list = artistsArray;
     let HTMLelement = ``;
     
     // insert HTML for each item in globalArtistsArray.
@@ -205,6 +206,7 @@ function displayArtists(list) {
             document.querySelector("#extended-artist-details").showModal();
         }
     }
+    document.querySelector("#loading-icon").classList.add("hidden");
 }
 
 // MUSIC SECTION

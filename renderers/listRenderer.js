@@ -1,7 +1,5 @@
 "use strict";
 
-import { displayAlbum } from "../sections/music-section.js";
-
 export function construct(list, container, itemRenderer) {
     const ListRenderer = {
       items: list,
@@ -11,22 +9,14 @@ export function construct(list, container, itemRenderer) {
       render() {
         // Sæt HTML listen til at være tom.
         this.container.innerHTML = "";
-        // Tjek for filtre
-        const filteredList = this.items.filter(item => this.filterValue === "all" || item[this.filterProperty] == this.filterValue);
         // Render hvert item i HTML'en.
-        for (const item of filteredList) {
+        for (const item of this.items) { 
+          // Use this.items instead of list
           // Få HTML fra itemRendereren
           const html = this.itemRenderer.render(item);
           // Render hvert item i HTML'en.
           this.container.insertAdjacentHTML("beforeend", html);
-            
-          // Tilføj event listener hvis det er albums
-          if (container === "#albums-table-container") {
-            document.querySelector(`#album-${item.id}`).addEventListener("click", () => displayAlbum(item));
-          }
         }
-        
-        
       },
 
 

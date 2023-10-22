@@ -76,8 +76,18 @@
             <input type="button" value="X" id="close-details-button" style="margin: 0 0 auto auto; display: block; cursor: pointer;">
             <div id="album-details-container">
             </div>
-            <div id="album-tracks-container">              
+            <div id="album-tracks-container"> 
+                <thead id="tracks-table-head" class="unselectable">
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Duration</th>
+                </thead>
+                <tbody>
+                    
+                </tbody> 
+                            
             </div>
+            <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin: auto 30%" id="tracks-loading-icon" class=""/>
         </dialog>
     </div>
         <script type="module" src="../sections/music-section.js"></script>
