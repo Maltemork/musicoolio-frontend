@@ -3,7 +3,7 @@ export function constructTrackObject(trackdata) {
         id: trackdata.id,
         number: trackdata.trackNo,
         title: trackdata.title,
-        album: trackdata.album,
+        album: trackdata.albumName,
         artistName: trackdata.artistName,
         releaseDate: trackdata.releaseDate,
         duration: trackdata.duration

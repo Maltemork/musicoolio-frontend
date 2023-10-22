@@ -1,10 +1,9 @@
-export const TrackRenderer = {
+export const AlbumTrackRenderer = {
     render(track) {   
       const html = /*html*/`
         <tr>
-          <td>${track.title}</td>
-          <td>${track.artistName}</td>
-          <td>${track.album}</td>
+        <td>${track.trackNo}</td>
+          <td>${track.trackTitle}</td>
           <td>${track.duration}</td>
         </tr>`;
       return html;

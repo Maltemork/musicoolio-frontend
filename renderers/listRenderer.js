@@ -40,7 +40,7 @@ export function construct(list, container, itemRenderer) {
         if (sortBy === "duration") {
           this.items.sort((a, b) => Number(a[this.sortBy].replace(":", "")) > Number(b[this.sortBy].replace(":", ""))  ? dir : -dir);
           // Hvis number, lav en basal sammenligning.
-        } else if (sortBy === "number") {
+        } else if (sortBy === "number" || sortBy === "trackNo") {
           this.items.sort((a, b) => a[this.sortBy] > b[this.sortBy] ? dir : -dir);
         }
           // Hvis det ikke er number eller duration, men stadig er en string, lav om til små bogstaver og sammenlign.

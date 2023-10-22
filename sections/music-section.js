@@ -1,11 +1,12 @@
 "use strict";
 
-import { getData, search } from "../crud/rest.js";
+import { getData, search, getAlbumTracks } from "../crud/rest.js";
 import * as album from "../renderers/album.js"
 import * as track from "../renderers/track.js";
 import * as ListRenderer from "../renderers/listRenderer.js";
 import { AlbumDetailsRenderer } from "../renderers/albumDetailsRenderer.js";
 import { AlbumRenderer } from "../renderers/albumRenderer.js";
+import { AlbumTrackRenderer } from "../renderers/albumTrackRenderer.js";
 import { TrackRenderer } from "../renderers/trackRenderer.js";
 
 
@@ -90,7 +91,6 @@ async function changeTable(table) {
         document.querySelector("#sort-tracks-title").addEventListener("click", () => tracksList.sort("title"));
         document.querySelector("#sort-tracks-artist").addEventListener("click", () => tracksList.sort("artistName"));
         document.querySelector("#sort-tracks-album").addEventListener("click", () => tracksList.sort("album"));
-        document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => tracksList.sort("releaseDate"));
         document.querySelector("#sort-tracks-duration").addEventListener("click", () => tracksList.sort("duration"));
     }
     
@@ -165,9 +165,17 @@ async function searchTracks() {
     
 }
 
-export function displayAlbum(album) {
+async function displayAlbum(album) {
+    // get album tracks
+    let albumTracksArray = await getAlbumTracks(album.albumId);
+    console.log(albumTracksArray);
+    // show dialog
     document.querySelector("#album-details").showModal();
+    // create html for album details
     const html = AlbumDetailsRenderer.render(album);
     document.querySelector("#album-details-container").innerHTML = html;
-    
+    // create album tracks list
+    const filteredTrackList = ListRenderer.construct(albumTracksArray, "#album-table-body", AlbumTrackRenderer); 
+    filteredTrackList.sort("trackNo");
+   
 }

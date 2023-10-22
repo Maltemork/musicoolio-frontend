@@ -190,6 +190,13 @@
     background-color: rgb(87, 87, 87);
 }
 
+#album-tracks-container {
+    width: 90%;
+    margin: 0px auto;
+    text-align: left;
+    padding-left: 30px;
+}
+
 dialog {
     background-color:#394a51;
     color: white;

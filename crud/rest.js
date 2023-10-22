@@ -96,20 +96,39 @@ async function submitNewAlbum(event) {
 
 }
 
+async function getAlbumTracks(albumId) {
+  const response = await fetch(`${endpoint}/albums/export/${albumId}`);
+  const data = await response.json();
+  const dataArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+  return dataArray;
+}
+
 // Submit new song function
 async function submitNewSong(event) {
   event.preventDefault();
   console.log("Submitting song");
 
-  // Define values.
+ 
+
   const form = event.target;
+
+  // Define values.
+  let fixedDuration = 0;
+
+  if (form.duration.value[0] == 0) {
+    fixedDuration = form.duration.value.slice(1);
+    console.log(fixedDuration);
+  }
+
+  const albumName = form.album.value;
   const title = form.title.value;
   const artistName = form.artist.value;
-  const duration = form.duration.value;
+  const duration = fixedDuration;
   const trackNo = form.number.value;
 
   // Create object out of new song.
   const newSong = {
+    albumName,
     title,
     artistName,
     duration,
@@ -236,6 +255,7 @@ export {
     submitNewArtist,
     submitNewSong,
     submitNewAlbum,
+    getAlbumTracks,
     search
 };
 
