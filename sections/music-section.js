@@ -132,11 +132,12 @@ async function searchTracks() {
         console.log(searchValue);
         let _filteredTitles = await search("tracks", "title", `${searchValue}`);
         let _filteredArtists = await search("tracks", "artistName", `${searchValue}`);
-        let newArray = removeDuplicates(_filteredTitles, _filteredArtists);
+        let _filteredAlbums = await search("tracks", "albumName", `${searchValue}`)
+        let newArray = removeDuplicates(_filteredTitles, _filteredArtists, _filteredAlbums);
 
-        function removeDuplicates(arr1, arr2) {  
+        function removeDuplicates(arr1, arr2, arr3) {  
             // Samler de 2 arrays som bliver givet
-            let newArray = arr1.concat(arr2);
+            let newArray = arr1.concat(arr2).concat(arr3);
              // Starter et loop for arrayet.
             for (let i = 0; i < newArray.length; ++i) {
                 // Starter et loop inde i loopet, så hvert objekt tjekker alle andre objekter.
