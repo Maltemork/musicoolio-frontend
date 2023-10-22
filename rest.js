@@ -190,6 +190,13 @@ async function deleteArtist(artistId) {
         console.log("Artist has been updated.")
       }
  }
+
+  async function search(table, column, searchValue) {
+      const response = await fetch(`${endpoint}/${table}/search/${column}/${searchValue}`);
+      const data = await response.json();
+      const dataArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+      return dataArray;
+  }
  
 
 export {
@@ -200,6 +207,7 @@ export {
     editArtist,
     getRandomArtist,
     submitNewSong,
+    search
 };
 
     

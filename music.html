@@ -46,8 +46,13 @@
                             <button type="button" class="active" id="change-to-songs-table">Songs</button>
                             <button type="button" id="change-to-albums-table">Albums</button>
                         </div>
+                        
                         <div id="tracks-table" class="active-section">
-                            <table>
+                            <table style="margin: auto">
+                                <div style="margin-left: 200px;">
+                                    <label for="search" style="margin-left: 20px;">Search:</label>
+                                    <input name="search" id="search-tracks" autocomplete="off" placeholder="search title or artist name">
+                                </div>
                                 <thead id="tracks-table-head" class="unselectable">
                                     <th id="sort-tracks-title">Title</th>
                                     <th id="sort-tracks-artist">Artist</th>
@@ -68,6 +73,13 @@
             </div>
             <img src="./styling-and-ui/icons/loading-icon.svg" style="scale: 0.5; margin-left: 40vw;" id="tracks-loading-icon" class="hidden"/>
         </div>
+
+        <!-- Album dialogue -->
+        <dialog id="album-details">
+            <input type="button" value="X" id="close-details-button" style="margin: 0 0 auto auto; display: block; cursor: pointer;">
+            <div id="album-details-container">
+            </div>
+        </dialog>
     </div>
         <script type="module" src="music-section.js"></script>
 </body>

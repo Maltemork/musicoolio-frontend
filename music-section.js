@@ -1,11 +1,14 @@
 "use strict";
 
-import { getData } from "./rest.js";
+import { getData, search } from "./rest.js";
 import * as album from "./renderers/album.js"
 import * as track from "./renderers/track.js";
 import * as ListRenderer from "./renderers/listRenderer.js";
+import * as ItemRenderer from "./renderers/itemRenderer.js";
+import { AlbumDetailsRenderer } from "./renderers/albumDetailsRenderer.js";
 import { AlbumRenderer } from "./renderers/albumRenderer.js";
 import { TrackRenderer } from "./renderers/trackRenderer.js";
+
 
 window.addEventListener("load", initMusicPage);
 
@@ -34,7 +37,6 @@ export function getTrack(trackId) {
 
 function clearTracksTable(table) {
     document.querySelector(`${table}`).innerHTML = "";
-    
 }   
 
 async function buildAlbumsList() {
@@ -81,4 +83,80 @@ async function changeTable(table) {
     }
     
     
+}
+
+
+// Global variabel som holder timeout (blot så man kan clearTimeout i funktionen neden under).
+let searchTimeout;
+// Eventlisteners til search (med timeout).
+document.querySelector("#search-tracks").addEventListener("input", () => {
+    clearTimeout(searchTimeout);
+    clearTracksTable("#tracks-table tbody");
+    document.querySelector("#tracks-loading-icon").classList.remove("hidden");
+    searchTimeout = setTimeout(searchTracks, "500");
+});
+
+// Funktionen for search i tracks
+async function searchTracks() {
+
+    let searchValue = document.querySelector("#search-tracks").value;
+    
+
+    if (searchValue == "") {
+        console.log("Nothing in search field.")
+        clearTracksTable("#tracks-table tbody");
+        await buildTracksList();
+        const tracksList = ListRenderer.construct(tracksArray, "#tracks-table tbody", TrackRenderer);
+        document.querySelector("#tracks-loading-icon").classList.add("hidden");
+        tracksList.sort("title");
+
+        // Eventlisteners til sort.
+        document.querySelector("#sort-tracks-title").addEventListener("click", () => tracksList.sort("title"));
+        document.querySelector("#sort-tracks-artist").addEventListener("click", () => tracksList.sort("artistName"));
+        document.querySelector("#sort-tracks-album").addEventListener("click", () => tracksList.sort("album"));
+        document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => tracksList.sort("releaseDate"));
+        document.querySelector("#sort-tracks-duration").addEventListener("click", () => tracksList.sort("duration"));
+    } else {
+        console.log(searchValue);
+        let _filteredTitles = await search("tracks", "title", `${searchValue}`);
+        let _filteredArtists = await search("tracks", "artistName", `${searchValue}`);
+        let _filteredAlbums = await search("tracks", "album", `${searchValue}`)
+        let newArray = removeDuplicates(_filteredTitles, _filteredArtists, _filteredAlbums);
+
+        function removeDuplicates(arr1, arr2, arr3) {  
+            // Samler de 2 arrays som bliver givet
+            let newArray = arr1.concat(arr2).concat(arr3);
+             // Starter et loop for arrayet.
+            for (let i = 0; i < newArray.length; ++i) {
+                // Starter et loop inde i loopet, så hvert objekt tjekker alle andre objekter.
+                for (let j = i + 1; j < newArray.length; ++j) {
+                    // Hvis 2 elementer har samme værdi, skal den ene fjernes fra arrayet.
+                    if (newArray[i].trackId === newArray[j].trackId) {
+                        console.log(newArray[i]);
+                        newArray.splice(j, 1); // Fjerner J objektet
+                    }
+                }
+            }
+            return newArray;
+        }
+        console.log(newArray);
+        const filteredTrackList = ListRenderer.construct(newArray, "#tracks-table tbody", TrackRenderer);
+        document.querySelector("#tracks-loading-icon").classList.add("hidden");
+        filteredTrackList.sort("title");
+
+        // Nye eventlisteners
+        document.querySelector("#sort-tracks-title").addEventListener("click", () => filteredTrackList.sort("title"));
+        document.querySelector("#sort-tracks-artist").addEventListener("click", () => filteredTrackList.sort("artistName"));
+        document.querySelector("#sort-tracks-album").addEventListener("click", () => filteredTrackList.sort("album"));
+        document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => filteredTrackList.sort("releaseDate"));
+        document.querySelector("#sort-tracks-duration").addEventListener("click", () => filteredTrackList.sort("duration"));
+    }
+    
+}
+
+export function displayAlbum(album) {
+    console.log(album);
+    document.querySelector("#album-details").showModal();
+    const item = ItemRenderer.construct(album, "#albums-details-container", AlbumDetailsRenderer);
+    item.render();
 }

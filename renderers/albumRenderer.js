@@ -6,7 +6,7 @@ export const AlbumRenderer = {
           <h1 class="album-container-title">${album.title}</h1>
           <p class="album-container-artist">${album.artistName}</p>
           <p class="album-container-release">${album.releaseDate}</p>
-        </div>`;
+        </div>`;   
       return html;
     }
   }

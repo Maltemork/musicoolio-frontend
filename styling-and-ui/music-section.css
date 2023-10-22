@@ -14,11 +14,16 @@
     justify-content: center;
 }
 #tracks-table {
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     background-color: rgba(0, 255, 255, 0.055);
     color: aqua;
     margin: 20px auto;
-    width: fit-content;
     text-align: left;
+    width: fit-content;
+    min-width: 1074px;
     padding: 10px;
     border-radius: 10px;
 }
@@ -127,7 +132,7 @@
     min-width: 2em;
 }
 
-.TwoButtons button.active {
+.TwoButtons button.active {background-color:  #4677689d;
     background: #507a65;
 }
 
@@ -140,6 +145,52 @@
     user-select: none;
 }
 
+#search-tracks {
+    padding: 10px;
+    border: none;
+    background-color:  #ffffff;
+    color: rgb(0, 0, 0);
+    width: 20%;
+}
+
 .hidden {
     display: none;
+}
+
+#album-details {
+    flex-wrap: wrap;
+    width: 700px;
+    max-height: 90vh;   
+}
+
+#album-container img {
+    display: block;
+    max-width: 100%;
+    max-height: 450px;
+    margin: 20px auto 20px auto;
+    box-shadow: 0px 0px 10px black;
+}
+
+#close-details-button {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    padding: 5px 8px;
+    color: white;
+    border: 1px solid gray; 
+}
+
+#extended-artist-details a {
+    color: aqua;
+}
+
+#close-details-button:hover {
+    background-color: rgb(87, 87, 87);
+}
+
+dialog {
+    background-color:#394a51;
+    color: white;
+    border: none;
+    border-radius: 10px;
 }

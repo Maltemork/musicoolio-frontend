@@ -1,10 +1,13 @@
 "use strict";
 
+import { displayAlbum } from "../music-section.js";
+
 export function construct(list, container, itemRenderer) {
     const ListRenderer = {
       items: list,
       container: document.querySelector(container),
       itemRenderer: itemRenderer,
+
       render() {
         // Sæt HTML listen til at være tom.
         this.container.innerHTML = "";
@@ -16,8 +19,17 @@ export function construct(list, container, itemRenderer) {
           const html = this.itemRenderer.render(item);
           // Render hvert item i HTML'en.
           this.container.insertAdjacentHTML("beforeend", html);
+            
+          // Tilføj event listener hvis det er albums
+          if (container === "#albums-table-container") {
+            document.querySelector(`#album-${item.id}`).addEventListener("click", () => displayAlbum(item));
+          }
         }
+        
+        
       },
+
+
       sort(sortBy, sortDir) {
         // Skift retning hver gang man klikker.
         if (sortDir) {
@@ -27,11 +39,9 @@ export function construct(list, container, itemRenderer) {
         } else {
           this.sortDir = "asc";
         }
-  
         // Sæt value for sortBy
         this.sortBy = sortBy;
         console.log(`Sorter efter ${this.sortBy} i retning ${this.sortDir}`);
-  
         // Template for hvordan den skal sortere ud fra "asc"
         const dir = this.sortDir === "asc" ? 1 : -1;
         
@@ -53,18 +63,6 @@ export function construct(list, container, itemRenderer) {
         
         // Render listen.
         this.render();
-      },
-      filter(filterProperty, filterValue) {
-        if(filterProperty.includes(":") && filterValue === undefined) {
-          [this.filterProperty, this.filterValue] = filterProperty.split(":");
-        } else {
-          this.filterProperty = filterProperty;
-          this.filterValue = filterValue;
-        }
-  
-        console.log(`filter: property: ${this.filterProperty} value: ${this.filterValue}`);
-        
-        this.render()
       }
     };
   
