@@ -29,7 +29,6 @@ async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
     await buildArtistList();
-    console.log(artistsArray);
 
     // Diplay artists
     displayArtists(artistsArray);

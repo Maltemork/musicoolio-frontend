@@ -126,7 +126,6 @@ async function searchTracks() {
         document.querySelector("#sort-tracks-title").addEventListener("click", () => tracksList.sort("title"));
         document.querySelector("#sort-tracks-artist").addEventListener("click", () => tracksList.sort("artistName"));
         document.querySelector("#sort-tracks-album").addEventListener("click", () => tracksList.sort("album"));
-        document.querySelector("#sort-tracks-releasedate").addEventListener("click", () => tracksList.sort("releaseDate"));
         document.querySelector("#sort-tracks-duration").addEventListener("click", () => tracksList.sort("duration"));
     } else {
         console.log(searchValue);

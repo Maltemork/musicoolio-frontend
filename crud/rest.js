@@ -92,6 +92,7 @@ async function submitNewAlbum(event) {
     // If POST is OK, update the artistgrid and change view to frontpage.
       if (response.ok) {
         document.querySelector("#add-album-container").reset();
+        window.location.href = "./music.html";
     };
 
 }
@@ -150,7 +151,6 @@ async function submitNewSong(event) {
   // If POST is OK, update the artistgrid and change view to frontpage.
   if (response.ok) {
       document.querySelector("#add-track-container").reset();
-      window.location.href = "./music.html";
   };
   
 }
