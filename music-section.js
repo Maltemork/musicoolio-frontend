@@ -4,7 +4,6 @@ import { getData, search } from "./rest.js";
 import * as album from "./renderers/album.js"
 import * as track from "./renderers/track.js";
 import * as ListRenderer from "./renderers/listRenderer.js";
-import * as ItemRenderer from "./renderers/itemRenderer.js";
 import { AlbumDetailsRenderer } from "./renderers/albumDetailsRenderer.js";
 import { AlbumRenderer } from "./renderers/albumRenderer.js";
 import { TrackRenderer } from "./renderers/trackRenderer.js";
@@ -23,6 +22,9 @@ async function initMusicPage() {
     // Eventlistener til knapperne i toppen
     document.querySelector("#change-to-songs-table").addEventListener("click", () => changeTable("songs"));
     document.querySelector("#change-to-albums-table").addEventListener("click", () => changeTable("albums"));
+    
+    // dialog eventlistener
+    document.querySelector("#close-details-button").addEventListener("click", () => document.querySelector("#album-details").close());
 }
 
 
@@ -157,6 +159,8 @@ async function searchTracks() {
 export function displayAlbum(album) {
     console.log(album);
     document.querySelector("#album-details").showModal();
-    const item = ItemRenderer.construct(album, "#albums-details-container", AlbumDetailsRenderer);
-    item.render();
+    const html = AlbumDetailsRenderer.render(album);
+    console.log(html);
+    document.querySelector("#album-details-container").innerHTML = html;
+    
 }

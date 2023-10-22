@@ -5,7 +5,7 @@ export const TrackRenderer = {
           <td>${track.title}</td>
           <td>${track.artistName}</td>
           <td>${track.album}</td>
-          <td>${track.releaseDate.toLocaleString("da", {month: "short", day: "numeric", year: "numeric"})}</td>
+          <td>${track.releaseDate}</td>
           <td>${track.duration}</td>
         </tr>`;
       return html;
