@@ -5,11 +5,18 @@ Der er primært brugt OOP til "Music" sektionen - artist sektionen er lavet før
 
 # Hvor kan jeg finde koden?
 
+
 Koden til frontend kan findes på:
+
 GitHub: https://github.com/Maltemork/musicoolio-frontend
+
 GitHub pages: https://maltemork.github.io/musicoolio-frontend/artists.html
 
+
 Koden til backend kan findes på:
+
 GitHub: https://github.com/Maltemork/musicoolio-backend
+
 Microsoft Azure App: https://musicooliowebapp.azurewebsites.net/
+
 Microsoft Azure Database: https://musicoolio.mysql.database.azure.com/
