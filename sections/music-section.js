@@ -99,7 +99,7 @@ document.querySelector("#search-tracks").addEventListener("input", () => {
     clearTimeout(searchTimeout);
     clearTracksTable("#tracks-table tbody");
     document.querySelector("#tracks-loading-icon").classList.remove("hidden");
-    searchTimeout = setTimeout(searchTracks, "500");
+    searchTimeout = setTimeout(searchTracks, "200");
 });
 
 // Funktionen for search i tracks
