@@ -162,7 +162,7 @@ function displayArtists(array) {
                         <li>Born on ${months[new Date(artist.birthdate).getMonth()]} ${birthString}, ${new Date(artist.birthdate).getUTCFullYear()}.</li>
                         <li>${artist.name} has been active in the music industry since ${artist.activeSince}.</li>
                         <li>Their music is primarily associated with ${artist.genres.toLowerCase()}.</li>
-                        <li>They have been signed to the record label(s) ${artist.label}.</li>
+                        <li>They have been signed to the record label(s) ${artist.labels}.</li>
                         <br/>
                     </ul>
                     
