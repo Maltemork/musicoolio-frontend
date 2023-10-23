@@ -22,7 +22,7 @@ async function submitNewArtist(event) {
     const name = form.name.value;
     const birthdate = form.birth.value;
     const activeSince = form.activeSince.value;
-    const label = form.label.value;
+    const labels = form.labels.value;
     const website = form.website.value;
     const genres = form.genres.value;
     const shortDescription = form.description.value;
@@ -33,7 +33,7 @@ async function submitNewArtist(event) {
       name,
       birthdate,
       activeSince,
-      label,
+      labels,
       website,
       genres,
       shortDescription,
