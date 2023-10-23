@@ -2,6 +2,7 @@
 //filter in array.
 
 async function sortAnArray(array, filter, search, sort) {
+  console.log(array);
   let filteredArray = filterInArray(array, filter);
   let searchedArray = searchInArray(filteredArray, search);
   let sortedArray = sortArray(searchedArray, sort);
@@ -20,7 +21,11 @@ function searchInArray(array, searchInput) {
   if (searchInput === "" || searchInput === null) {
     return array;
   } else {
-    return array.filter((obj) => obj.name.toLowerCase().includes(searchInput.toLowerCase()));
+    // Search on both label and name.
+    let arr1 = array.filter((obj) => obj.name.toLowerCase().includes(searchInput.toLowerCase()));
+    let arr2 = array.filter((obj) => obj.labels.toLowerCase().includes(searchInput.toLowerCase()));
+    let arr3 = arr1.concat(arr2);
+    return arr3;
   }
 }
 

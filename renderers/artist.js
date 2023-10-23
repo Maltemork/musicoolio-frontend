@@ -2,7 +2,7 @@
 
 export function constructArtistObject(artist) {
     const ArtistObject = {
-        id: artist.id,
+        id: artist.artistId,
         name: artist.name,
         birthdate: artist.birthdate,
         activeSince: artist.activeSince,

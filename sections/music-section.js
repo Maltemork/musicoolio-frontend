@@ -31,12 +31,6 @@ async function initMusicPage() {
     document.querySelector("#close-details-button").addEventListener("click", () => document.querySelector("#album-details").close());
 }
 
-
- // Tilføj event listener hvis det er albums
-
-
- 
-
 async function buildTracksList() {
     const data = await getData("tracks");
     tracksArray = data.map(track.constructTrackObject);
@@ -81,6 +75,7 @@ async function changeTable(table) {
         document.querySelector("#change-to-albums-table").classList.remove("active");
         document.querySelector("#change-to-songs-table").classList.add("active");
 
+        document.querySelector("#search-tracks").value = "";
         clearTracksTable("#tracks-table tbody");
         await buildTracksList();
         const tracksList = ListRenderer.construct(tracksArray, "#tracks-table tbody", TrackRenderer);
