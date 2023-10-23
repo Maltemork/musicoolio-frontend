@@ -2,9 +2,9 @@
 //filter in array.
 
 async function sortAnArray(array, filter, search, sort) {
-  let filteredArray = await filterInArray(array, filter);
-  let searchedArray = await searchInArray(filteredArray, search);
-  let sortedArray = await sortArray(searchedArray, sort);
+  let filteredArray = filterInArray(array, filter);
+  let searchedArray = searchInArray(filteredArray, search);
+  let sortedArray = sortArray(searchedArray, sort);
   return sortedArray;
 }
 
@@ -17,7 +17,7 @@ function filterInArray(array, filter) {
 }
 // search array
 function searchInArray(array, searchInput) {
-  if (searchInput === 0) {
+  if (searchInput === "" || searchInput === null) {
     return array;
   } else {
     return array.filter((obj) => obj.name.toLowerCase().includes(searchInput.toLowerCase()));

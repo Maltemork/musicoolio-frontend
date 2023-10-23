@@ -3,17 +3,10 @@
 import {
     getData,
     deleteArtist,
-    editArtist,
-    getRandomArtist
+    editArtist
 } from "../crud/rest.js";
 
 import * as artist from "../renderers/artist.js";
-import * as ArtistGridRenderer from "../renderers/artistGridRenderer.js";
-import * as ArtistListRenderer from "../renderers/artistListRenderer.js";
-
-import * as ListRenderer from "../renderers/listRenderer.js";
-
-
 
 import {
     sortAnArray
@@ -23,22 +16,36 @@ let artistsArray = [];
 let listView = false;
 
 
+
+
 window.addEventListener("load", startFunction);
 
 async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
     await buildArtistList();
-
+    console.log(artistsArray);
     // Diplay artists
-    displayArtists(artistsArray);
+    await sortArtists();
 
     // starts event listeners
     startEventListeners();
 
+    
+
+    console.log(artistsArray);
+    document.querySelector("#filterArtists").addEventListener("change", sortArtists);
+    document.querySelector("#sortBy").addEventListener("change", sortArtists);
+    document.querySelector("#searchField").addEventListener("input", sortArtists);
+}
+
+async function sortArtists() {
     const filterParm = document.querySelector("#filterArtists").value;
     const sortParm = document.querySelector("#sortBy").value;
     const searchParm = document.querySelector("#searchField").value;
+
+    let sortedArray = await sortAnArray(artistsArray, filterParm, searchParm, sortParm);
+    displayArtists(sortedArray);
 }
 
 function startEventListeners() {
@@ -78,8 +85,8 @@ function changeGridViewClicked() {
     
 
         document.querySelector("#main-content-grid").innerHTML = "";    
-    console.log(listView);
-    displayArtists(artistsArray);
+        console.log(listView);
+        sortArtists();
 }
 
 async function buildArtistList() {
@@ -88,8 +95,9 @@ async function buildArtistList() {
 }
 
 // Display artists.
-function displayArtists() {
-    let list = artistsArray;
+function displayArtists(array) {
+    document.querySelector("#main-content-grid").innerHTML = "";
+    let list = array;
     let HTMLelement = ``;
     
     // insert HTML for each item in globalArtistsArray.
