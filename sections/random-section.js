@@ -95,8 +95,6 @@ async function randomAlbumView() {
                 <li>Released on ${albumObject.releaseDate}.</li>
                 <br/>
             </ul>
-            
-            <div class="3btn-holder">
 
         </div>
             <br/>
@@ -115,17 +113,20 @@ async function randomTrackView() {
     let HTMLelement = /*HTML*/ `
     <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>
     <div id="random-artist-card">
+    <h3>${trackObject.title}</h3>
         <div>
-            <h3>${trackObject.title}</h3>
-            <p>Track by ${trackObject.artistName}</p>
+            
+            <p>Found on the album ${trackObject.albumName}.</p>
+            <p>Track by ${trackObject.artistName}.</p>
+            
             <ul>
                 <br/>
             </ul>
-            
-            <div class="3btn-holder">
 
         </div>
+        
             <br/>
+            
         </div>
     </div>
     `;
