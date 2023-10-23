@@ -51,7 +51,6 @@ async function randomArtistView() {
     }
 
     console.log(`Fetched random artist ${artistObject.name} from server`);
-    console.log(artistObject);
 
     let HTMLelement = /*HTML*/ `
     <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random artist:</h3>
@@ -84,7 +83,6 @@ async function randomAlbumView() {
     albumObject = await getRandomAlbum();
 
     console.log(`Fetched random album ${albumObject.title} from server`);
-    console.log(albumObject);
 
     let HTMLelement = /*HTML*/ `
     <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random album:</h3>
@@ -112,8 +110,7 @@ async function randomTrackView() {
     let trackObject = {};
     trackObject = await getRandomTrack();
 
-    console.log(`Fetched random album ${trackObject.title} from server`);
-    console.log(trackObject);
+    console.log(`Fetched random song ${trackObject.title} from server`);
 
     let HTMLelement = /*HTML*/ `
     <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>

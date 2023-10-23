@@ -189,3 +189,7 @@
 #close-details-button:hover {
     background-color: rgb(87, 87, 87);
 }
+
+#change-grid-btn {
+    width: 10%;
+}

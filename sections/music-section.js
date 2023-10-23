@@ -47,7 +47,6 @@ function clearTracksTable(table) {
 async function buildAlbumsList() {
     const data = await getData("albums");
     albumsArray = data;
-    console.log(albumsArray);
 }
 
 async function changeTable(table) {
@@ -163,7 +162,6 @@ async function searchTracks() {
 async function displayAlbum(album) {
     // get album tracks
     let albumTracksArray = await getAlbumTracks(album.albumId);
-    console.log(albumTracksArray);
     // show dialog
     document.querySelector("#album-details").showModal();
     // create html for album details

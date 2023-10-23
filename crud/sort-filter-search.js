@@ -2,7 +2,6 @@
 //filter in array.
 
 async function sortAnArray(array, filter, search, sort) {
-  console.log(array);
   let filteredArray = filterInArray(array, filter);
   let searchedArray = searchInArray(filteredArray, search);
   let sortedArray = sortArray(searchedArray, sort);

@@ -24,19 +24,12 @@ async function startFunction() {
     // eventlisteners
     console.log("Javascript is running 👍");
     await buildArtistList();
-    console.log(artistsArray);
+
     // Diplay artists
     await sortArtists();
 
     // starts event listeners
     startEventListeners();
-
-    
-
-    console.log(artistsArray);
-    document.querySelector("#filterArtists").addEventListener("change", sortArtists);
-    document.querySelector("#sortBy").addEventListener("change", sortArtists);
-    document.querySelector("#searchField").addEventListener("input", sortArtists);
 }
 
 async function sortArtists() {
@@ -70,6 +63,12 @@ function startEventListeners() {
     document.querySelector("#close-details-button").addEventListener("click", 
     () => document.querySelector("#extended-artist-details").close()
     );
+
+    // Artist sort/search/filter
+
+    document.querySelector("#filterArtists").addEventListener("change", sortArtists);
+    document.querySelector("#sortBy").addEventListener("change", sortArtists);
+    document.querySelector("#searchField").addEventListener("input", sortArtists);
     
 }
 
@@ -85,7 +84,6 @@ function changeGridViewClicked() {
     
 
         document.querySelector("#main-content-grid").innerHTML = "";    
-        console.log(listView);
         sortArtists();
 }
 
@@ -170,8 +168,8 @@ function displayArtists(array) {
                     
                     <div class="3btn-holder">
                         <div class="btns">
-                        <button class="btn-update">🖊</button>
-                        <button class="btn-delete">🗑</button>
+                        <button class="btn-update hidden">🖊</button>
+                        <button class="btn-delete hidden">🗑</button>
                         </div> 
                     </div>
                     <br/>
