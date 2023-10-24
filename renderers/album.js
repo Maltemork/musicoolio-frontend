@@ -4,7 +4,6 @@ export function constructAlbumObject(albumdata) {
         title: albumdata.title,
         artistName: albumdata.artistName,
         releaseDate: albumdata.releaseDate,
-        duration: albumdata.duration,
         image: albumdata.albumArt
     }
 

@@ -37,7 +37,7 @@ async function submitNewArtist(event) {
       website,
       genres,
       shortDescription,
-      image,
+      image
     };
     
     // Make the object into a json format.
