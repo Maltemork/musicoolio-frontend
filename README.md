@@ -1,7 +1,7 @@
 # musicoolio-frontend
 
 SQL opgave til frontend, som giver et overskueligt og lækkert design til at interagere med backenden på Azure.
-Der er primært brugt OOP til "Music" sektionen - artist sektionen er lavet før OOP forløbet - men kan være at den bliver opdateret senere!
+Der er primært brugt OOP til "Music" sektionen - artist sektionen er lavet før OOP forløbet, men kan være at den bliver opdateret senere!
 
 # Hvor kan jeg finde koden?
 
